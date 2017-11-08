@@ -111,22 +111,27 @@ export default class Map extends Component < {} > {
             <MapView.Marker
                 coordinate={this.state.marker1}
                 pinColor={'red'}
+                title="Miscelanea la Chiquita"
             />
             <MapView.Marker
                 coordinate={this.state.marker2}
                 pinColor={'red'}
+                title="Don Tacho"
             />
             <MapView.Marker
                 coordinate={this.state.marker3}
                 pinColor={'red'}
+                title="Residente"
             />
             <MapView.Marker
                 coordinate={this.state.marker4}
                 pinColor={'red'}
+                title="El negro"
             />
             <MapView.Marker
                 coordinate={this.state.marker5}
                 pinColor={'red'}
+                title="Miscelanea Juanita"
             />
 
 
