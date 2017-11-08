@@ -3,12 +3,14 @@ import {StyleSheet, Text, View, ScrollView, Image, StatusBar} from 'react-native
 import {Container, Thumbnail, Body, List, ListItem, CardItem, Button} from 'native-base';
 import Select from './Select';
 import img from '../../../assets/imgs/comida.jpg';
+import Cabecera from './Cabecera'
 
 export default class Detalle extends Component <{}> {
   render() {
     const {p} = this.props;
     return (
       <Container>
+      <Cabecera/>
       <StatusBar backgroundColor="#802154" barStyle="light-content"/>
       <ScrollView>
         <List style={styles.list}>
