@@ -1,0 +1,1 @@
+export const LISTA_FETCH_SUCCESS = 'lista_fetch_success';

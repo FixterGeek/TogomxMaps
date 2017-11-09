@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import Footer from '../footer/Footer';
 import MapView from 'react-native-maps';
+import {connect} from 'react-redux';
+import {listaFetch} from "../../actions/listaActions";
 
 const {width,height} = Dimensions.get('window');
 
@@ -11,7 +13,8 @@ const ASPECT_RADIO = width / height;
 const LATITUDE_DELTA = 0.0150;
 const LONGTITUDE_DELTA = LATITUDE_DELTA * ASPECT_RADIO;
 
-export default class Map extends Component < {} > {
+class Map extends Component < {} > {
+
     constructor(props){
         super(props);
         this.state={
@@ -91,10 +94,15 @@ export default class Map extends Component < {} > {
     }
 
 
+    componentWillMount(){
+        this.props.listaFetch();
+    }
+
   render(){
     return (
       <View style={styles.container}>
-        <MapView
+
+                  <MapView
           style={{flex: 1}}
           provider={MapView.PROVIDER_GOOGLE}
           region={this.state.initialPosition}
@@ -142,6 +150,8 @@ export default class Map extends Component < {} > {
     );
   }
 }
+
+export default connect (null, {listaFetch})(Map);
 
 const styles = StyleSheet.create({
   container: {
