@@ -16,8 +16,8 @@ export const Lista = ({index, p}) => {
         <Thumbnail square size={80} source={{
             uri: imagenUsuario
           }}/>
-        <Body>
-          <Text>{Direccion}</Text>
+        <Body style={{marginLeft: 10}}>
+          <Text>Direccion: {Direccion}</Text>
           <Text note="note">{Pagar}</Text>
         </Body>
       </TouchableOpacity>
@@ -30,5 +30,5 @@ export default Lista;
 const styles = StyleSheet.create({
   touch: {
     flexDirection: 'row'
-  }
+  },
 });

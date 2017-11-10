@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView, Image, StatusBar} from 'react-native';
 import {Container, Thumbnail, Body, List, ListItem, CardItem, Button} from 'native-base';
-import Select from './Select';
 import img from '../../../assets/imgs/comida.jpg';
 import Cabecera from './Cabecera'
 
@@ -9,100 +8,41 @@ export default class Detalle extends Component <{}> {
   render() {
     const {p} = this.props;
     return (
-      <Container>
+      <Container style={styles.back}>
       <Cabecera/>
       <StatusBar backgroundColor="#802154" barStyle="light-content"/>
       <ScrollView>
-        <List style={styles.list}>
-            <ListItem>
-              <Body>
-                <Text style={styles.text1}>Imagen</Text>
-              </Body>
-              <Body>
-                <Text style={styles.text1}>Nombre</Text>
-              </Body>
-              <Body>
-                <Text style={styles.text1}>Precio U</Text>
-              </Body>
-              <Body>
-                <Text style={styles.text1}>Cantidad</Text>
-              </Body>
-              <Body>
-                <Text style={styles.total}>Total</Text>
-              </Body>
-            </ListItem>
-          </List>
 
-          <ScrollView>
-            <List>
-              <ListItem>
-                <Thumbnail square size={80} source={img}/>
-                <Body>
-                  <Text>Manzanas</Text>
-                </Body>
-                <Body>
-                  <Text>$25.00</Text>
-                </Body>
-                <Select/>
-                <Body>
-                  <Text style={styles.totalP}>$25.00</Text>
-                </Body>
-              </ListItem>
-
-              <ListItem>
-                <Thumbnail square size={80} source={img}/>
-                <Body>
-                  <Text>Manzanas</Text>
-                </Body>
-                <Body>
-                  <Text>$25.00</Text>
-                </Body>
-                <Select/>
-                <Body>
-                  <Text style={styles.totalP}>$25.00</Text>
-                </Body>
-              </ListItem>
-
-              <ListItem>
-                <Thumbnail square size={80} source={img}/>
-                <Body>
-                  <Text>Manzanas</Text>
-                </Body>
-                <Body>
-                  <Text>$25.00</Text>
-                </Body>
-                <Select/>
-                <Body>
-                  <Text style={styles.totalP}>$25.00</Text>
-                </Body>
-              </ListItem>
-
-              <ListItem>
-                <Thumbnail square size={80} source={img}/>
-                <Body>
-                  <Text>Manzanas</Text>
-                </Body>
-                <Body>
-                  <Text>$25.00</Text>
-                </Body>
-                <Select/>
-                <Body>
-                  <Text style={styles.totalP}>$25.00</Text>
-                </Body>
-              </ListItem>
-            </List>
-          </ScrollView>
+        <View>
+          <ListItem>
+              <Thumbnail square size={80} source={{
+                  uri: p.imagenUsuario
+                }}/>
+              <Body style={styles.margin}>
+                <Text><Text style={styles.negrita}>Direccion:</Text> {p.Direccion}</Text>
+                <Text note="note"><Text style={styles.negrita}>Total a pagar: </Text>{p.Pagar}</Text>
+              </Body>
+          </ListItem>
+        </View>
 
       </ScrollView>
-      <Button style={styles.boton}>
-        <Text style={styles.texto2}>ACEPTAR</Text>
-      </Button>
+      <View style={{flexDirection: 'row'}}>
+        <Button style={styles.boton1}>
+          <Text style={styles.texto2}>ACEPTAR</Text>
+        </Button>
+        <Button style={styles.boton2}>
+          <Text style={styles.texto2}>RECHAZAR</Text>
+        </Button>
+      </View>
     </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  back: {
+    backgroundColor: 'white'
+  },
   img: {
     width: '100%',
     height: 200
@@ -118,9 +58,20 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20
   },
-  boton: {
-    width: '100%',
-    backgroundColor: '#802154',
+  boton1: {
+    width: '50%',
+    backgroundColor: 'green',
     justifyContent: 'center'
+  },
+  boton2: {
+    width: '50%',
+    backgroundColor: 'red',
+    justifyContent: 'center'
+  },
+  margin: {
+    marginLeft: 10
+  },
+  negrita: {
+    fontWeight: 'bold'
   }
 });

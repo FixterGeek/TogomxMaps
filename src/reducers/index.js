@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
 import pedidosReducer from './pedidosReducer';
-import ListaReducer from './ListaReducer'
+import listaReducer from './listaReducer'
 
 const rootReducer = combineReducers({
     pedidos: pedidosReducer,
-    lista: ListaReducer,
+    lista: listaReducer,
 });
 
 export default rootReducer;
