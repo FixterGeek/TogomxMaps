@@ -55,8 +55,7 @@ var Lista = exports.Lista = function Lista(_ref) {
       }),
       _react2.default.createElement(
         _nativeBase.Body,
-        {
-          __source: {
+        { style: { marginLeft: 10 }, __source: {
             fileName: _jsxFileName,
             lineNumber: 19
           }
@@ -69,6 +68,7 @@ var Lista = exports.Lista = function Lista(_ref) {
               lineNumber: 20
             }
           },
+          'Direccion: ',
           Direccion
         ),
         _react2.default.createElement(
