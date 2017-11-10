@@ -8,7 +8,7 @@ export default (state= INITIAL_STATE, action)=>{
     switch (action.type){
         case LISTA_FETCH_SUCCESS:
             console.log(action);
-            return state;
+            return action.payload;
         default:
             return state
 }

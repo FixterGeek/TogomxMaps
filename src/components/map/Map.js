@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, Dimensions, ListView} from 'react-native';
 import Footer from '../footer/Footer';
 import MapView from 'react-native-maps';
 import {connect} from 'react-redux';
 import {listaFetch} from "../../actions/listaActions";
+import _ from 'lodash';
 
 const {width,height} = Dimensions.get('window');
 
@@ -27,27 +28,6 @@ class Map extends Component < {} > {
             markerPosition:{
                 latitude:0,
                 longitude:0,
-            },
-
-            marker1:{
-                latitude:20.136090,
-                longitude:-98.803441,
-            },
-            marker2:{
-                latitude:20.135465,
-                longitude:-98.806708,
-            },
-            marker3:{
-                latitude:20.136009,
-                longitude:-98.800898,
-            },
-            marker4:{
-                latitude:20.132665,
-                longitude:-98.805978,
-            },
-            marker5:{
-                latitude:20.137248,
-                longitude:-98.802389,
             },
 
         }
@@ -99,9 +79,10 @@ class Map extends Component < {} > {
     }
 
   render(){
+        console.log(this.props);
+        const {lista} = this.props;
     return (
       <View style={styles.container}>
-
                   <MapView
           style={{flex: 1}}
           provider={MapView.PROVIDER_GOOGLE}
@@ -116,42 +97,37 @@ class Map extends Component < {} > {
                 </View>
             </MapView.Marker>
 
-            <MapView.Marker
-                coordinate={this.state.marker1}
-                pinColor={'red'}
-                title="Miscelanea la Chiquita"
-            />
-            <MapView.Marker
-                coordinate={this.state.marker2}
-                pinColor={'red'}
-                title="Don Tacho"
-            />
-            <MapView.Marker
-                coordinate={this.state.marker3}
-                pinColor={'red'}
-                title="Residente"
-            />
-            <MapView.Marker
-                coordinate={this.state.marker4}
-                pinColor={'red'}
-                title="El negro"
-            />
-            <MapView.Marker
-                coordinate={this.state.marker5}
-                pinColor={'red'}
-                title="Miscelanea Juanita"
-            />
+
+                      {lista.map((lista,index)=>{
+                          return(
+                              <MapView.Marker
+                                  key={index}
+                                  coordinate={lista.coord}
+                                  pinColor={'red'}
+                                  title={lista.title}
+                              />
+                          )
+                      })}
 
 
 
         </MapView>
+
         <Footer/>
       </View>
     );
   }
 }
 
-export default connect (null, {listaFetch})(Map);
+const mapStateToProps = state => {
+    const lista = _.map(state.lista, (val, uid)=>{
+       return {...val, uid};
+    });
+    return{lista};
+};
+
+
+export default connect (mapStateToProps, {listaFetch})(Map);
 
 const styles = StyleSheet.create({
   container: {
@@ -176,11 +152,5 @@ const styles = StyleSheet.create({
         borderWidth:3,
         borderColor:'white',
         borderRadius: 20/2
-    },
-    bubble: {
-        backgroundColor: 'rgba(255,255,255,0.7)',
-        paddingHorizontal: 18,
-        paddingVertical: 12,
-        borderRadius: 20,
     },
 });

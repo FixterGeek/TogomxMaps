@@ -1,108 +1,34 @@
 import React, {Component} from 'react';
 import {Container, Content, List, ListItem, Text, Thumbnail, Body} from 'native-base';
+import {View} from 'react-native';
 import Footer from '../footer/Footer';
+import {connect} from 'react-redux';
+import {listaFetch} from "../../actions/listaActions";
+import _ from 'lodash';
+import {CardT} from "./CardT";
 
-export default class ListExample extends Component {
+class ListExample extends Component {
+    componentWillMount(){
+        this.props.listaFetch();
+    }
   render() {
+      const {lista} = this.props;
     return (
-      <Container style={{
-        backgroundColor: 'white'
-      }}>
-      <Content>
-        <List>
-          <ListItem>
-            <Thumbnail square size={80} source={{
-                uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
-              }}/>
-            <Body>
-              <Text>Tienda 1</Text>
-              <Text note="note">Its time to build a difference . .</Text>
-            </Body>
-          </ListItem>
-
-          <ListItem>
-            <Thumbnail square size={80} source={{
-                uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
-              }}/>
-            <Body>
-              <Text>Tienda 2</Text>
-              <Text note="note">Its time to build a difference . .</Text>
-            </Body>
-          </ListItem>
-
-          <ListItem>
-            <Thumbnail square size={80} source={{
-                uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
-              }}/>
-            <Body>
-              <Text>Tienda 3</Text>
-              <Text note="note">Its time to build a difference . .</Text>
-            </Body>
-          </ListItem>
-
-          <ListItem>
-            <Thumbnail square size={80} source={{
-                uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
-              }}/>
-            <Body>
-              <Text>Tienda 4</Text>
-              <Text note="note">Its time to build a difference . .</Text>
-            </Body>
-          </ListItem>
-
-          <ListItem>
-            <Thumbnail square size={80} source={{
-                uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
-              }}/>
-            <Body>
-              <Text>Tienda 5</Text>
-              <Text note="note">Its time to build a difference . .</Text>
-            </Body>
-          </ListItem>
-
-          <ListItem>
-            <Thumbnail square size={80} source={{
-                uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
-              }}/>
-            <Body>
-              <Text>Tienda 6</Text>
-              <Text note="note">Its time to build a difference . .</Text>
-            </Body>
-          </ListItem>
-
-          <ListItem>
-            <Thumbnail square size={80} source={{
-                uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
-              }}/>
-            <Body>
-              <Text>Tienda 7</Text>
-              <Text note="note">Its time to build a difference . .</Text>
-            </Body>
-          </ListItem>
-
-          <ListItem>
-            <Thumbnail square size={80} source={{
-                uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
-              }}/>
-            <Body>
-              <Text>Tienda 8</Text>
-              <Text note="note">Its time to build a difference . .</Text>
-            </Body>
-          </ListItem>
-
-          <ListItem>
-            <Thumbnail square size={80} source={{
-                uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
-              }}/>
-            <Body>
-              <Text>Tienda 9</Text>
-              <Text note="note">Its time to build a difference . .</Text>
-            </Body>
-          </ListItem>
-        </List>
-      </Content>
-      <Footer/>
-    </Container>
+    <View>
+        {lista.map((lista,index)=><CardT
+            key={index}
+            lista={lista}
+        />)}
+    </View>
   );
   }
 }
+  const mapStateToProps = state => {
+      const lista = _.map(state.lista, (val, uid)=>{
+      return {...val, uid};
+  });
+      return{lista};
+  };
+
+
+  export default connect (mapStateToProps, {listaFetch})(ListExample);

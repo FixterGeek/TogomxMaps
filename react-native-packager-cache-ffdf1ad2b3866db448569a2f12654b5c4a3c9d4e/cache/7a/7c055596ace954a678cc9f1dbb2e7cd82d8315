@@ -1,0 +1,22 @@
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _redux = require('redux');
+
+var _pedidosReducer = require('./pedidosReducer');
+
+var _pedidosReducer2 = _interopRequireDefault(_pedidosReducer);
+
+var _ListaReducer = require('./ListaReducer');
+
+var _ListaReducer2 = _interopRequireDefault(_ListaReducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var rootReducer = (0, _redux.combineReducers)({
+    pedidos: _pedidosReducer2.default,
+    lista: _ListaReducer2.default
+});
+
+exports.default = rootReducer;
