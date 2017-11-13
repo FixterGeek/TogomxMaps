@@ -1,34 +1,44 @@
 import React, {Component} from 'react';
-import {Container, Content, List, ListItem, Text, Thumbnail, Body} from 'native-base';
-import {View} from 'react-native';
-import Footer from '../footer/Footer';
+import {View, StyleSheet} from 'react-native';
+import {Container, Content} from 'native-base';
 import {connect} from 'react-redux';
-import {listaFetch} from "../../actions/listaActions";
+import {listaFetch} from '../../actions/listaActions';
 import _ from 'lodash';
-import {CardT} from "./CardT";
+import {CardT} from './CardT';
+import Footer from '../footer/Footer';
 
 class ListExample extends Component {
-    componentWillMount(){
-        this.props.listaFetch();
-    }
+  componentWillMount() {
+    this.props.listaFetch();
+  }
+
   render() {
-      const {lista} = this.props;
+    const {lista} = this.props;
+
     return (
-    <View>
-        {lista.map((lista,index)=><CardT
-            key={index}
-            lista={lista}
-        />)}
-    </View>
-  );
+      <Container style={styles.back}>
+        <Content>
+          {lista.map((lista, index) => <CardT key={index} lista={lista}/>)}
+        </Content>
+        <Footer/>
+      </Container>
+    );
   }
 }
-  const mapStateToProps = state => {
-      const lista = _.map(state.lista, (val, uid)=>{
-      return {...val, uid};
+const mapStateToProps = state => {
+  const lista = _.map(state.lista, (val, uid) => {
+    return {
+      ...val,
+      uid
+    };
   });
-      return{lista};
-  };
+  return {lista};
+};
 
+const styles = StyleSheet.create({
+  back: {
+    backgroundColor: 'white'
+  }
+});
 
-  export default connect (mapStateToProps, {listaFetch})(ListExample);
+export default connect(mapStateToProps, {listaFetch})(ListExample);
