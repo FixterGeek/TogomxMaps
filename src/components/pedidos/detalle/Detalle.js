@@ -2,11 +2,36 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView, Image, StatusBar} from 'react-native';
 import {Container, Thumbnail, Body, List, ListItem, CardItem, Button} from 'native-base';
 import img from '../../../assets/imgs/comida.jpg';
-import Cabecera from './Cabecera'
+import Cabecera from './Cabecera';
+import {store} from '../../../App';
+import * as listaActions from '../../../actions/listaActions';
 
 export default class Detalle extends Component <{}> {
+  state = {
+    notifications: []
+  }
+
+  componentWillMount() {
+    this.setState({notifications: store.getState().notifications})
+    this.unsubscribe = store.subscribe(() => {
+      const {notifications} = store.getState();
+      this.setState({notifications});
+    })
+  }
+
+  guardar = () => {
+    const {text} = this.state;
+    const item = {
+      id: text,
+      name: text,
+    }
+    store.dispatch(listaActions.addItemList(item));
+  };
+
   render() {
+    const {notifications, text} = this.state;
     const {p} = this.props;
+
     return (
       <Container style={styles.back}>
       <Cabecera/>
@@ -27,7 +52,7 @@ export default class Detalle extends Component <{}> {
 
       </ScrollView>
       <View style={{flexDirection: 'row'}}>
-        <Button style={styles.boton1}>
+        <Button style={styles.boton1} onPress={this.guardar}>
           <Text style={styles.texto2}>ACEPTAR</Text>
         </Button>
         <Button style={styles.boton2}>
