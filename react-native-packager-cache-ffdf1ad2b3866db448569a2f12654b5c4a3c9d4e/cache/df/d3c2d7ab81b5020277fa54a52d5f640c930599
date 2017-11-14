@@ -1,0 +1,25 @@
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.pedidoCreate = undefined;
+
+var _types = require('./types');
+
+var _Firebase = require('../Firebase');
+
+var _Firebase2 = _interopRequireDefault(_Firebase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var pedidoCreate = exports.pedidoCreate = function pedidoCreate(_ref) {
+    var visto = _ref.visto,
+        items = _ref.items,
+        tiendaId = _ref.tiendaId;
+
+
+    return function (dispatch) {
+        _Firebase2.default.database().ref('/pedidosPrueba').push({ visto: visto, items: items, tiendaId: tiendaId }).then(function () {
+            dispatch({ type: _types.PEDIDO_CREATE });
+        });
+    };
+};

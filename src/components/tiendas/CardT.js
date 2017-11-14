@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {ListItem, Thumbnail, Text, Body} from 'native-base';
 
-export const CardT = ({index, lista}) => {
+export const CardT = ({lista, }) => {
 
-  const {responsable, direccion, title} = lista;
+  const {direccion, title, uid} = lista;
+
+
 
   return (
-    <ListItem>
+    <ListItem onPress={()=>alert(uid)}>
       <Thumbnail square size={80} source={{
           uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
         }}/>

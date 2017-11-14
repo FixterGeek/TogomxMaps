@@ -2,3 +2,4 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var LISTA_FETCH_SUCCESS = exports.LISTA_FETCH_SUCCESS = 'lista_fetch_success';
+var PEDIDO_CREATE = exports.PEDIDO_CREATE = 'pedido_create';

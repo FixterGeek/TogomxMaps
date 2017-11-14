@@ -12,11 +12,16 @@ var _ListaReducer = require('./ListaReducer');
 
 var _ListaReducer2 = _interopRequireDefault(_ListaReducer);
 
+var _PedidoReducer = require('./PedidoReducer');
+
+var _PedidoReducer2 = _interopRequireDefault(_PedidoReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var rootReducer = (0, _redux.combineReducers)({
     pedidos: _pedidosReducer2.default,
-    lista: _ListaReducer2.default
+    lista: _ListaReducer2.default,
+    pedidoForm: _PedidoReducer2.default
 });
 
 exports.default = rootReducer;
