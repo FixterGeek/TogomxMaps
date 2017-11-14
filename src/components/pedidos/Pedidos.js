@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PedidoLista from './Lista/PedidoLista';
 import {Container} from 'native-base';
@@ -25,6 +25,5 @@ const styles = StyleSheet.create({
 function mapStateToProps({reducer}) {
   return{reducer}
 }
-
 
 export default Pedidos = connect(mapStateToProps)(Pedidos);

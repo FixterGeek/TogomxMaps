@@ -4,7 +4,7 @@ import * as fireMethods from '../Firebase';
 
 export const listaFetch = () => {
   return(dispatch) => {
-    firebase.database().ref(`/tiendas`).on('value', snapshot => {
+    firebase.database().ref('tiendas').on('value', snapshot => {
       dispatch({type: LISTA_FETCH_SUCCESS, payload: snapshot.val()})
     });
   }

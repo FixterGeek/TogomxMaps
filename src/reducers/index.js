@@ -6,7 +6,7 @@ import PedidoReducer from "./PedidoReducer";
 const rootReducer = combineReducers({
     pedidos: pedidosReducer,
     lista: ListaReducer,
-    pedidoForm:PedidoReducer
+    pedidoForm: PedidoReducer
 });
 
 export default rootReducer;
