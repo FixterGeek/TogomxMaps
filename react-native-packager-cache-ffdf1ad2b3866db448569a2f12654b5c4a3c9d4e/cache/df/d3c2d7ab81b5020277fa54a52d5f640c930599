@@ -18,7 +18,7 @@ var pedidoCreate = exports.pedidoCreate = function pedidoCreate(_ref) {
 
 
     return function (dispatch) {
-        _Firebase2.default.database().ref('/pedidosPrueba').push({ visto: visto, items: items, tiendaId: tiendaId }).then(function () {
+        _Firebase2.default.database().ref('/notifications').push({ visto: visto, items: items, tiendaId: tiendaId }).then(function () {
             dispatch({ type: _types.PEDIDO_CREATE });
         });
     };

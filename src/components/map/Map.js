@@ -3,7 +3,8 @@ import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import Footer from '../footer/Footer';
 import MapView from 'react-native-maps';
 import {connect} from 'react-redux';
-import {listaFetch} from '../../actions/listaActions';
+import {listaFetch} from "../../actions/listaActions";
+import {notiFetch} from "../../actions/listaActions";
 import _ from 'lodash';
 
 const {width, height} = Dimensions.get('window');
@@ -71,48 +72,81 @@ class Map extends Component <{}> {
     navigator.geolocation.clearWatch(this.watchID)
   }
 
-  componentWillMount() {
-    this.props.listaFetch();
-  }
+    componentWillMount(){
+        this.props.listaFetch();
+        this.props.notiFetch();
+    }
 
-  render() {
-    const {lista} = this.props;
+  render(){
+        console.log(this.props);
+        const {lista, noti} = this.props;
     return (
       <View style={styles.container}>
-        <MapView style={styles.container} provider={MapView.PROVIDER_GOOGLE} region={this.state.initialPosition}>
-          <MapView.Marker coordinate={this.state.markerPosition}>
-            <View style={styles.radius}>
-              <View style={styles.marker}/>
-            </View>
-          </MapView.Marker>
 
-          {
-            lista.map((lista, index) => {
-              return (
-                <MapView.Marker key={index} coordinate={lista.coord} pinColor={'red'} title={lista.title}/>
+          <MapView style={styles.container} provider={MapView.PROVIDER_GOOGLE} region={this.state.initialPosition}>
+              <MapView.Marker coordinate={this.state.markerPosition}>
+                  <View style={styles.radius}>
+                      <View style={styles.marker}/>
+                  </View>
+              </MapView.Marker>
+
+              {
+                  lista.map((lista, index) => {
+                      let n=noti.find(noti=>noti.tiendaId===lista.owner);
+
+                      if(n===undefined){
+                          n={has:false}
+                      }
+                      if(n.has===true){
+                          color='green'
+                      }
+                      if(n.has===false){
+                          color='red'
+                      }
+                      return (
+                          <MapView.Marker key={index} coordinate={lista.coord} pinColor={color} title={lista.title}/>
+                      )
+                  })
+              }
+
+          </MapView>
+
+
+
+          {/*{lista.map(lista=>{
+              let n=noti.find(noti=>noti.tiendaId===lista.owner);
+
+              if(n===undefined){
+                  n={has:false}
+              }
+              console.log(n)
+              return(
+
+                      <Text style={n.has?{color:'green'}:{color:'red'}} >{lista.title}</Text>
+
               )
-            })
-          }
+          })}*/}
 
-        </MapView>
-
-        <Footer/>
+          <Footer/>
       </View>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const lista = _.map(state.lista, (val, uid) => {
-    return {
-      ...val,
-      uid
-    };
-  });
-  return {lista};
+    const lista = _.map(state.lista, (val, uid)=>{
+       return {...val, uid};
+    });
+
+    const noti = _.map(state.noti, (val, uid)=>{
+        return {...val, uid};
+    });
+
+    return{lista, noti};
 };
 
-export default connect(mapStateToProps, {listaFetch})(Map);
+
+export default connect (mapStateToProps, {listaFetch, notiFetch})(Map);
 
 const styles = StyleSheet.create({
   container: {

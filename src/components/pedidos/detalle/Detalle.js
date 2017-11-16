@@ -33,9 +33,9 @@ export default class Detalle extends Component <{}> {
 
     return (
       <Container style={styles.back}>
-        <Cabecera/>
-        <StatusBar backgroundColor="#802154" barStyle="light-content"/>
-        <ScrollView>
+      <Cabecera/>
+      <StatusBar backgroundColor="orange" barStyle="light-content"/>
+      <ScrollView>
 
           <View>
             <ListItem>

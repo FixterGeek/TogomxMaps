@@ -19,7 +19,7 @@ class PedidoLista extends Component {
     const {allPedidos} = this.state;
     return (
       <Content>
-        <StatusBar backgroundColor="#802154" barStyle="light-content"/>
+        <StatusBar backgroundColor="orange" barStyle="light-content"/>
         {
           allPedidos.map((p, index) => {
             return <Lista key={index} index={index} p={p}/>

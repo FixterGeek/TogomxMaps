@@ -4,13 +4,14 @@ import {connect} from 'react-redux';
 import PedidoLista from './Lista/PedidoLista';
 import {Container} from 'native-base';
 import Footer from '../footer/Footer';
+import Cabecera from "./detalle/Cabecera";
 
 class Pedidos extends Component {
   render() {
     return (
       <Container style={styles.back}>
+        <Cabecera/>
         <PedidoLista/>
-        <Footer/>
       </Container>
     );
   };

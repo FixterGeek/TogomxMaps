@@ -1,7 +1,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.listaFetch = undefined;
+exports.notiFetch = exports.listaFetch = undefined;
 
 var _Firebase = require('../Firebase');
 
@@ -13,8 +13,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var listaFetch = exports.listaFetch = function listaFetch() {
   return function (dispatch) {
-    _Firebase2.default.database().ref('/tiendas').on('value', function (snapshot) {
+    _Firebase2.default.database().ref('tiendas').on('value', function (snapshot) {
       dispatch({ type: _types.LISTA_FETCH_SUCCESS, payload: snapshot.val() });
+    });
+  };
+};
+
+var notiFetch = exports.notiFetch = function notiFetch() {
+  return function (dispatch) {
+    _Firebase2.default.database().ref('/notifications').on('value', function (snapshot) {
+      dispatch({ type: _types.NOTI_FETCH_SUCCESS, payload: snapshot.val() });
     });
   };
 };

@@ -114,18 +114,9 @@ exports.default = Cabecera;
 
 var styles = _reactNative.StyleSheet.create({
   header: {
-    backgroundColor: '#802154'
+    backgroundColor: 'orange'
   },
   color: {
     color: "white"
-  },
-  view: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    margin: 10
-  },
-  img: {
-    width: 90,
-    height: 50
   }
 });

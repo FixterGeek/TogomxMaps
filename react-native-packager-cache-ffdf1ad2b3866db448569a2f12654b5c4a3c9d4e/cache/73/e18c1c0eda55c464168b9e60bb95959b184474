@@ -12,7 +12,6 @@ exports.default = function () {
 
   switch (action.type) {
     case _types.LISTA_FETCH_SUCCESS:
-      console.log(action);
       return action.payload;
     default:
       return state;

@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react2 = require('react');
@@ -43,22 +43,22 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _components = {
-    Map: {
-        displayName: 'Map'
-    }
+  Map: {
+    displayName: 'Map'
+  }
 };
 
 var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-    filename: '/home/jose/Escritorio/TogomxMaps/src/components/map/Map.js',
-    components: _components,
-    locals: [module],
-    imports: [_react3.default]
+  filename: '/home/jose/Escritorio/TogomxMaps/src/components/map/Map.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
 });
 
 function _wrapComponent(id) {
-    return function (Component) {
-        return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-    };
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
 }
 
 var _Dimensions$get = _reactNative.Dimensions.get('window'),
@@ -72,182 +72,195 @@ var LATITUDE_DELTA = 0.0150;
 var LONGTITUDE_DELTA = LATITUDE_DELTA * ASPECT_RADIO;
 
 var Map = _wrapComponent('Map')(function (_Component) {
-    _inherits(Map, _Component);
+  _inherits(Map, _Component);
 
-    function Map(props) {
-        _classCallCheck(this, Map);
+  function Map(props) {
+    _classCallCheck(this, Map);
 
-        var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
 
-        _this.watchID = null;
+    _this.watchID = null;
 
-        _this.state = {
-            initialPosition: {
-                latitude: 20.104989,
-                longitude: -98.756323,
-                longitudeDelta: 0.0043,
-                latitudeDelta: 0.0034
-            },
-            markerPosition: {
-                latitude: 0,
-                longitude: 0
-            }
+    _this.state = {
+      initialPosition: {
+        latitude: 20.104989,
+        longitude: -98.756323,
+        longitudeDelta: 0.0043,
+        latitudeDelta: 0.0034
+      },
+      markerPosition: {
+        latitude: 0,
+        longitude: 0
+      }
+    };
+    return _this;
+  }
 
+  _createClass(Map, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var lat = parseFloat(position.coords.latitude);
+        var long = parseFloat(position.coords.longitude);
+
+        var initialRegion = {
+          latitude: lat,
+          longitude: long,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGTITUDE_DELTA
         };
-        return _this;
+
+        _this2.setState({ initialPosition: initialRegion });
+        _this2.setState({ markerPosition: initialRegion });
+      }, function (error) {
+        return console.log(error);
+      }, {
+        enableHighAccuracy: true,
+        timeout: 200000,
+        maximumAge: 10000
+      });
+
+      this.watchID = navigator.geolocation.watchPosition(function (position) {
+        var lat = parseFloat(position.coords.latitude);
+        var long = parseFloat(position.coords.longitude);
+
+        var lastRegion = {
+          latitude: lat,
+          longitude: long,
+          longitudeDelta: LONGTITUDE_DELTA,
+          latitudeDelta: LATITUDE_DELTA
+        };
+        _this2.setState({ initialPosition: lastRegion });
+        _this2.setState({ markerPosition: lastRegion });
+      });
     }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      navigator.geolocation.clearWatch(this.watchID);
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.props.listaFetch();
+      this.props.notiFetch();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      console.log(this.props);
+      var _props = this.props,
+          lista = _props.lista,
+          noti = _props.noti;
 
-    _createClass(Map, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _this2 = this;
-
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var lat = parseFloat(position.coords.latitude);
-                var long = parseFloat(position.coords.longitude);
-
-                var initialRegion = {
-                    latitude: lat,
-                    longitude: long,
-                    latitudeDelta: LATITUDE_DELTA,
-                    longitudeDelta: LONGTITUDE_DELTA
-                };
-
-                _this2.setState({ initialPosition: initialRegion });
-                _this2.setState({ markerPosition: initialRegion });
-            }, function (error) {
-                return console.log(error);
-            }, { enableHighAccuracy: true, timeout: 200000, maximumAge: 10000 });
-
-            this.watchID = navigator.geolocation.watchPosition(function (position) {
-                var lat = parseFloat(position.coords.latitude);
-                var long = parseFloat(position.coords.longitude);
-
-                var lastRegion = {
-                    latitude: lat,
-                    longitude: long,
-                    longitudeDelta: LONGTITUDE_DELTA,
-                    latitudeDelta: LATITUDE_DELTA
-                };
-                _this2.setState({ initialPosition: lastRegion });
-                _this2.setState({ markerPosition: lastRegion });
+      return _react3.default.createElement(
+        _reactNative.View,
+        { style: styles.container, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 84
+          }
+        },
+        _react3.default.createElement(
+          _reactNativeMaps2.default,
+          { style: styles.container, provider: _reactNativeMaps2.default.PROVIDER_GOOGLE, region: this.state.initialPosition, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 86
+            }
+          },
+          _react3.default.createElement(
+            _reactNativeMaps2.default.Marker,
+            { coordinate: this.state.markerPosition, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 87
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.View,
+              { style: styles.radius, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 88
+                }
+              },
+              _react3.default.createElement(_reactNative.View, { style: styles.marker, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 89
+                }
+              })
+            )
+          ),
+          lista.map(function (lista, index) {
+            var n = noti.find(function (noti) {
+              return noti.tiendaId === lista.owner;
             });
-        }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            navigator.geolocation.clearWatch(this.watchID);
-        }
-    }, {
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            this.props.listaFetch();
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            console.log(this.props);
-            var lista = this.props.lista;
 
-            return _react3.default.createElement(
-                _reactNative.View,
-                { style: styles.container, __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 85
-                    }
-                },
-                _react3.default.createElement(
-                    _reactNativeMaps2.default,
-                    {
-                        style: { flex: 1 },
-                        provider: _reactNativeMaps2.default.PROVIDER_GOOGLE,
-                        region: this.state.initialPosition,
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 86
-                        }
-                    },
-                    _react3.default.createElement(
-                        _reactNativeMaps2.default.Marker,
-                        {
-                            coordinate: this.state.markerPosition,
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 91
-                            }
-                        },
-                        _react3.default.createElement(
-                            _reactNative.View,
-                            { style: styles.radius, __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 95
-                                }
-                            },
-                            _react3.default.createElement(_reactNative.View, { style: styles.marker, __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 96
-                                }
-                            })
-                        )
-                    ),
-                    lista.map(function (lista, index) {
-                        return _react3.default.createElement(_reactNativeMaps2.default.Marker, {
-                            key: index,
-                            coordinate: lista.coord,
-                            pinColor: 'red',
-                            title: lista.title,
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 103
-                            }
-                        });
-                    })
-                ),
-                _react3.default.createElement(_Footer2.default, {
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 116
-                    }
-                })
-            );
-        }
-    }]);
+            if (n === undefined) {
+              n = { has: false };
+            }
+            if (n.has === true) {
+              color = 'green';
+            }
+            if (n.has === false) {
+              color = 'red';
+            }
+            return _react3.default.createElement(_reactNativeMaps2.default.Marker, { key: index, coordinate: lista.coord, pinColor: color, title: lista.title, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 107
+              }
+            });
+          })
+        ),
+        _react3.default.createElement(_Footer2.default, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 130
+          }
+        })
+      );
+    }
+  }]);
 
-    return Map;
+  return Map;
 }(_react2.Component));
 
 var mapStateToProps = function mapStateToProps(state) {
-    var lista = _lodash2.default.map(state.lista, function (val, uid) {
-        return _extends({}, val, { uid: uid });
-    });
-    return { lista: lista };
+  var lista = _lodash2.default.map(state.lista, function (val, uid) {
+    return _extends({}, val, { uid: uid });
+  });
+
+  var noti = _lodash2.default.map(state.noti, function (val, uid) {
+    return _extends({}, val, { uid: uid });
+  });
+
+  return { lista: lista, noti: noti };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { listaFetch: _listaActions.listaFetch })(Map);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { listaFetch: _listaActions.listaFetch, notiFetch: _listaActions.notiFetch })(Map);
 
 
 var styles = _reactNative.StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    radius: {
-        height: 50,
-        width: 50,
-        borderRadius: 50 / 2,
-        overflow: 'hidden',
-        backgroundColor: 'rgba(0,112,255,0.1)',
-        borderWidth: 1,
-        borderColor: 'rgba(0,112,255,0.3)',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    marker: {
-        height: 20,
-        width: 20,
-        overflow: 'hidden',
-        backgroundColor: '#337ab7',
-        borderWidth: 3,
-        borderColor: 'white',
-        borderRadius: 20 / 2
-    }
+  container: {
+    flex: 1
+  },
+  radius: {
+    height: 50,
+    width: 50,
+    borderRadius: 50 / 2,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(0,112,255,0.1)',
+    borderWidth: 1,
+    borderColor: 'rgba(0,112,255,0.3)',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  marker: {
+    height: 20,
+    width: 20,
+    overflow: 'hidden',
+    backgroundColor: '#337ab7',
+    borderWidth: 3,
+    borderColor: 'white',
+    borderRadius: 20 / 2
+  }
 });
