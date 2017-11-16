@@ -118,14 +118,5 @@ var styles = _reactNative.StyleSheet.create({
   },
   color: {
     color: "white"
-  },
-  view: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    margin: 10
-  },
-  img: {
-    width: 90,
-    height: 50
   }
 });

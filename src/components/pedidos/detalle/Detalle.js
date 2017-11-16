@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView, Image, StatusBar} from 'react-native';
-import {Container, Thumbnail, Body, List, ListItem, CardItem, Button} from 'native-base';
-import img from '../../../assets/imgs/comida.jpg';
+import {StyleSheet, Text, View, ScrollView, StatusBar} from 'react-native';
+import {Container, Thumbnail, Body, ListItem, Button} from 'native-base';
 import Cabecera from './Cabecera';
 import {store} from '../../../App';
 import * as listaActions from '../../../actions/listaActions';
@@ -38,28 +37,28 @@ export default class Detalle extends Component <{}> {
       <StatusBar backgroundColor="orange" barStyle="light-content"/>
       <ScrollView>
 
-        <View>
-          <ListItem>
-              <Thumbnail square size={80} source={{
-                  uri: p.imagenUsuario
-                }}/>
-              <Body style={styles.margin}>
-                <Text><Text style={styles.negrita}>Direccion:</Text> {p.Direccion}</Text>
-                <Text note="note"><Text style={styles.negrita}>Total a pagar: </Text>{p.Pagar}</Text>
-              </Body>
-          </ListItem>
-        </View>
+          <View>
+            <ListItem>
+                <Thumbnail square size={80} source={{
+                    uri: p.imagenUsuario
+                  }}/>
+                <Body style={styles.margin}>
+                  <Text><Text style={styles.negrita}>Direccion:</Text> {p.Direccion}</Text>
+                  <Text note="note"><Text style={styles.negrita}>Total a pagar: </Text>{p.Pagar}</Text>
+                </Body>
+            </ListItem>
+          </View>
 
-      </ScrollView>
-      <View style={{flexDirection: 'row'}}>
-        <Button style={styles.boton1} onPress={this.guardar}>
-          <Text style={styles.texto2}>ACEPTAR</Text>
-        </Button>
-        <Button style={styles.boton2}>
-          <Text style={styles.texto2}>RECHAZAR</Text>
-        </Button>
-      </View>
-    </Container>
+        </ScrollView>
+        <View style={styles.view}>
+          <Button style={styles.boton1} onPress={this.guardar}>
+            <Text style={styles.texto2}>ACEPTAR</Text>
+          </Button>
+          <Button style={styles.boton2}>
+            <Text style={styles.texto2}>RECHAZAR</Text>
+          </Button>
+        </View>
+      </Container>
     );
   }
 }
@@ -68,35 +67,27 @@ const styles = StyleSheet.create({
   back: {
     backgroundColor: 'white'
   },
-  img: {
-    width: '100%',
-    height: 200
+  margin: {
+    marginLeft: 10
   },
-  h1: {
-    alignSelf: 'center'
+  negrita: {
+    fontWeight: 'bold'
   },
-  text: {
-    fontSize: 18,
-    margin: 20
-  },
-  texto2: {
-    color: 'white',
-    fontSize: 20
+  view: {
+    flexDirection: 'row'
   },
   boton1: {
     width: '50%',
     backgroundColor: 'green',
     justifyContent: 'center'
   },
+  texto2: {
+    color: 'white',
+    fontSize: 20
+  },
   boton2: {
     width: '50%',
     backgroundColor: 'red',
     justifyContent: 'center'
   },
-  margin: {
-    marginLeft: 10
-  },
-  negrita: {
-    fontWeight: 'bold'
-  }
 });

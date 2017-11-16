@@ -117,28 +117,37 @@ var ListExample = _wrapComponent('ListExample')(function (_Component) {
           _react3.default.createElement(_Cabecera2.default, {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 28
+              lineNumber: 27
             }
           }),
           lista.map(function (lista, index) {
             return _react3.default.createElement(
               _nativeBase.ListItem,
-              { key: index, onPress: function onPress() {
-                  return _reactNative.Alert.alert('PEDIDO', '¿Deseas confirmar pedido con está tienda?', [{ text: 'OK', onPress: function onPress() {
+              {
+                key: index,
+                onPress: function onPress() {
+                  return _reactNative.Alert.alert('PEDIDO', '¿Deseas confirmar pedido con está tienda?', [{
+                    text: 'OK',
+                    onPress: function onPress() {
                       return _this2.onTiendaPress(lista.owner);
-                    } }, { text: 'Cancel', onPress: function onPress() {
+                    }
+                  }, {
+                    text: 'Cancel',
+                    onPress: function onPress() {
                       return console.log('Cancel Pressed');
-                    }, style: 'cancel' }], { cancelable: false });
+                    },
+                    style: 'cancel'
+                  }], { cancelable: false });
                 }, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 32
+                  lineNumber: 31
                 }
               },
               _react3.default.createElement(_nativeBase.Thumbnail, { square: true, size: 80, source: {
                   uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
                 }, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 41
+                  lineNumber: 43
                 }
               }),
               _react3.default.createElement(
@@ -146,7 +155,7 @@ var ListExample = _wrapComponent('ListExample')(function (_Component) {
                 {
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 44
+                    lineNumber: 46
                   }
                 },
                 _react3.default.createElement(
@@ -154,7 +163,7 @@ var ListExample = _wrapComponent('ListExample')(function (_Component) {
                   {
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 45
+                      lineNumber: 47
                     }
                   },
                   lista.title
@@ -163,7 +172,7 @@ var ListExample = _wrapComponent('ListExample')(function (_Component) {
                   _nativeBase.Text,
                   { note: 'note', __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 46
+                      lineNumber: 48
                     }
                   },
                   lista.direccion

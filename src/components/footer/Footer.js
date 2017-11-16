@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import {Footer, FooterTab, Button, Icon, StyleProvider} from 'native-base';
 import getTheme from '../../../native-base-theme/components';
 import material from '../../../native-base-theme/variables/material';
@@ -11,15 +11,15 @@ export default class Map extends Component < {} > {
       <StyleProvider style={getTheme(material)}>
       <Footer style={{backgroundColor: 'white'}}>
       <FooterTab>
-        <Button vertical="vertical" onPress={() => Actions.Map()}>
+        <Button vertical onPress={() => Actions.Map()}>
           <Icon name="map"/>
           <Text>Mapa</Text>
         </Button>
-        <Button vertical="vertical" onPress={() => Actions.Tiendas()}>
+        <Button vertical onPress={() => Actions.Tiendas()}>
           <Icon name="cart"/>
           <Text>Tiendas</Text>
         </Button>
-        <Button vertical="vertical" onPress={() => Actions.Pedidos()}>
+        <Button vertical onPress={() => Actions.Pedidos()}>
           <Icon name="list"/>
           <Text>Pedidos</Text>
         </Button>

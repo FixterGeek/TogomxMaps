@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Text, View, Image, TouchableOpacity, StyleSheet, ImageBackground} from 'react-native';
-import {List, ListItem, Body, Thumbnail} from 'native-base';
+import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {ListItem, Body, Thumbnail} from 'native-base';
 import {Actions} from 'react-native-router-flux';
 
 export const Lista = ({index, p}) => {
@@ -16,7 +16,7 @@ export const Lista = ({index, p}) => {
         <Thumbnail square size={80} source={{
             uri: imagenUsuario
           }}/>
-        <Body style={{marginLeft: 10}}>
+        <Body style={styles.body}>
           <Text>Direccion: {Direccion}</Text>
           <Text note="note">{Pagar}</Text>
         </Body>
@@ -31,4 +31,7 @@ const styles = StyleSheet.create({
   touch: {
     flexDirection: 'row'
   },
+  body: {
+    marginLeft: 10
+  }
 });

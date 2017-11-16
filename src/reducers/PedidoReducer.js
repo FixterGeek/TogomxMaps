@@ -1,4 +1,4 @@
-import {PEDIDO_CREATE} from "../actions/types";
+import {PEDIDO_CREATE} from '../actions/types';
 
 const INITIAL_STATE= {
     visto: false,
@@ -12,11 +12,11 @@ const INITIAL_STATE= {
     ]
 };
 
-export default (state=INITIAL_STATE, action) => {
-    switch (action.type){
-        case PEDIDO_CREATE:
-            return INITIAL_STATE;
-        default:
-            return state;
-    }
+export default(state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case PEDIDO_CREATE:
+      return INITIAL_STATE;
+    default:
+      return state;
+  }
 }

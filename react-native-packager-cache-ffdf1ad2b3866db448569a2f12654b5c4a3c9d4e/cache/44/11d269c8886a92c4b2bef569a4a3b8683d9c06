@@ -55,7 +55,7 @@ var Lista = exports.Lista = function Lista(_ref) {
       }),
       _react2.default.createElement(
         _nativeBase.Body,
-        { style: { marginLeft: 10 }, __source: {
+        { style: styles.body, __source: {
             fileName: _jsxFileName,
             lineNumber: 19
           }
@@ -91,5 +91,8 @@ exports.default = Lista;
 var styles = _reactNative.StyleSheet.create({
   touch: {
     flexDirection: 'row'
+  },
+  body: {
+    marginLeft: 10
   }
 });

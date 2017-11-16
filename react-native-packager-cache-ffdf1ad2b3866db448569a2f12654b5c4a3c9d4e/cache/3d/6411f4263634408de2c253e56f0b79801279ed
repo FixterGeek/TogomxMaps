@@ -91,7 +91,7 @@ var Map = _wrapComponent('Map')(function (_Component) {
             },
             _react3.default.createElement(
               _nativeBase.Button,
-              { vertical: 'vertical', onPress: function onPress() {
+              { vertical: true, onPress: function onPress() {
                   return _reactNativeRouterFlux.Actions.Map();
                 }, __source: {
                   fileName: _jsxFileName,
@@ -116,7 +116,7 @@ var Map = _wrapComponent('Map')(function (_Component) {
             ),
             _react3.default.createElement(
               _nativeBase.Button,
-              { vertical: 'vertical', onPress: function onPress() {
+              { vertical: true, onPress: function onPress() {
                   return _reactNativeRouterFlux.Actions.Tiendas();
                 }, __source: {
                   fileName: _jsxFileName,
@@ -141,7 +141,7 @@ var Map = _wrapComponent('Map')(function (_Component) {
             ),
             _react3.default.createElement(
               _nativeBase.Button,
-              { vertical: 'vertical', onPress: function onPress() {
+              { vertical: true, onPress: function onPress() {
                   return _reactNativeRouterFlux.Actions.Pedidos();
                 }, __source: {
                   fileName: _jsxFileName,

@@ -13,7 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var listaFetch = exports.listaFetch = function listaFetch() {
   return function (dispatch) {
-    _Firebase2.default.database().ref('/tiendas').on('value', function (snapshot) {
+    _Firebase2.default.database().ref('tiendas').on('value', function (snapshot) {
       dispatch({ type: _types.LISTA_FETCH_SUCCESS, payload: snapshot.val() });
     });
   };

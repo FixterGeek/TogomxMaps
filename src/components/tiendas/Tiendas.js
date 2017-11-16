@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
+import {StyleSheet, Alert} from 'react-native';
 import {Container, Content, ListItem, Thumbnail, Body, Text} from 'native-base';
 import {connect} from 'react-redux';
 import {listaFetch} from '../../actions/listaActions';
@@ -24,32 +24,33 @@ class ListExample extends Component {
     return (
       <Container style={styles.back}>
         <Content>
-          {/*{lista.map((lista, index) => <CardT key={index} lista={lista} />)}*/}
           <Cabecera/>
-            {lista.map((lista, index) => {
-              return(
-
-              <ListItem key={index} onPress={()=>Alert.alert(
-                  'PEDIDO',
-                  '¿Deseas confirmar pedido con está tienda?',
-                  [
-                      {text: 'OK', onPress: ()=>this.onTiendaPress(lista.owner)},
-                      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                  ],
-                  { cancelable: false }
-              )}>
-                    <Thumbnail square size={80} source={{
-                        uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
+          {
+            lista.map((lista, index) => {
+              return (
+                <ListItem
+                  key={index}
+                  onPress={() => Alert.alert('PEDIDO', '¿Deseas confirmar pedido con está tienda?', [
+                  {
+                    text: 'OK',
+                    onPress: () => this.onTiendaPress(lista.owner)
+                  }, {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel'
+                  }
+                  ], {cancelable: false})}>
+                  <Thumbnail square size={80} source={{
+                      uri: 'https://pbs.twimg.com/profile_images/916006979365040128/DcY8jSuo.jpg'
                     }}/>
-                    <Body>
+                  <Body>
                     <Text>{lista.title}</Text>
                     <Text note="note">{lista.direccion}</Text>
-                    </Body>
-                  </ListItem>
+                  </Body>
+                </ListItem>
               )
-
-                }
-            )}
+            })
+          }
         </Content>
       </Container>
     );
