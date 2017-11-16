@@ -3,3 +3,4 @@ Object.defineProperty(exports, "__esModule", {
 });
 var LISTA_FETCH_SUCCESS = exports.LISTA_FETCH_SUCCESS = 'lista_fetch_success';
 var PEDIDO_CREATE = exports.PEDIDO_CREATE = 'pedido_create';
+var NOTI_FETCH_SUCCESS = exports.NOTI_FETCH_SUCCESS = 'noti_fetch_success';

@@ -26,6 +26,14 @@ var _Cabecera = require('./Cabecera');
 
 var _Cabecera2 = _interopRequireDefault(_Cabecera);
 
+var _App = require('../../../App');
+
+var _listaActions = require('../../../actions/listaActions');
+
+var listaActions = _interopRequireWildcard(_listaActions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -57,32 +65,67 @@ var Detalle = _wrapComponent('Detalle')(function (_Component) {
   _inherits(Detalle, _Component);
 
   function Detalle() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, Detalle);
 
-    return _possibleConstructorReturn(this, (Detalle.__proto__ || Object.getPrototypeOf(Detalle)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detalle.__proto__ || Object.getPrototypeOf(Detalle)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      notifications: []
+    }, _this.guardar = function () {
+      var text = _this.state.text;
+
+      var item = {
+        id: text,
+        name: text
+      };
+      _App.store.dispatch(listaActions.addItemList(item));
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Detalle, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      this.setState({ notifications: _App.store.getState().notifications });
+      this.unsubscribe = _App.store.subscribe(function () {
+        var _store$getState = _App.store.getState(),
+            notifications = _store$getState.notifications;
+
+        _this2.setState({ notifications: notifications });
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _state = this.state,
+          notifications = _state.notifications,
+          text = _state.text;
       var p = this.props.p;
+
 
       return _react3.default.createElement(
         _nativeBase.Container,
         { style: styles.back, __source: {
             fileName: _jsxFileName,
-            lineNumber: 11
+            lineNumber: 36
           }
         },
         _react3.default.createElement(_Cabecera2.default, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 12
+            lineNumber: 37
           }
         }),
-        _react3.default.createElement(_reactNative.StatusBar, { backgroundColor: '#802154', barStyle: 'light-content', __source: {
+        _react3.default.createElement(_reactNative.StatusBar, { backgroundColor: 'orange', barStyle: 'light-content', __source: {
             fileName: _jsxFileName,
-            lineNumber: 13
+            lineNumber: 38
           }
         }),
         _react3.default.createElement(
@@ -90,7 +133,7 @@ var Detalle = _wrapComponent('Detalle')(function (_Component) {
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 14
+              lineNumber: 39
             }
           },
           _react3.default.createElement(
@@ -98,7 +141,7 @@ var Detalle = _wrapComponent('Detalle')(function (_Component) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 16
+                lineNumber: 41
               }
             },
             _react3.default.createElement(
@@ -106,21 +149,21 @@ var Detalle = _wrapComponent('Detalle')(function (_Component) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 17
+                  lineNumber: 42
                 }
               },
               _react3.default.createElement(_nativeBase.Thumbnail, { square: true, size: 80, source: {
                   uri: p.imagenUsuario
                 }, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 18
+                  lineNumber: 43
                 }
               }),
               _react3.default.createElement(
                 _nativeBase.Body,
                 { style: styles.margin, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 21
+                    lineNumber: 46
                   }
                 },
                 _react3.default.createElement(
@@ -128,14 +171,14 @@ var Detalle = _wrapComponent('Detalle')(function (_Component) {
                   {
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 22
+                      lineNumber: 47
                     }
                   },
                   _react3.default.createElement(
                     _reactNative.Text,
                     { style: styles.negrita, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 22
+                        lineNumber: 47
                       }
                     },
                     'Direccion:'
@@ -147,14 +190,14 @@ var Detalle = _wrapComponent('Detalle')(function (_Component) {
                   _reactNative.Text,
                   { note: 'note', __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 23
+                      lineNumber: 48
                     }
                   },
                   _react3.default.createElement(
                     _reactNative.Text,
                     { style: styles.negrita, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 23
+                        lineNumber: 48
                       }
                     },
                     'Total a pagar: '
@@ -169,21 +212,21 @@ var Detalle = _wrapComponent('Detalle')(function (_Component) {
           _reactNative.View,
           { style: { flexDirection: 'row' }, __source: {
               fileName: _jsxFileName,
-              lineNumber: 29
+              lineNumber: 54
             }
           },
           _react3.default.createElement(
             _nativeBase.Button,
-            { style: styles.boton1, __source: {
+            { style: styles.boton1, onPress: this.guardar, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 30
+                lineNumber: 55
               }
             },
             _react3.default.createElement(
               _reactNative.Text,
               { style: styles.texto2, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 31
+                  lineNumber: 56
                 }
               },
               'ACEPTAR'
@@ -193,14 +236,14 @@ var Detalle = _wrapComponent('Detalle')(function (_Component) {
             _nativeBase.Button,
             { style: styles.boton2, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 33
+                lineNumber: 58
               }
             },
             _react3.default.createElement(
               _reactNative.Text,
               { style: styles.texto2, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 34
+                  lineNumber: 59
                 }
               },
               'RECHAZAR'

@@ -142,63 +142,68 @@ var Map = _wrapComponent('Map')(function (_Component) {
         key: 'componentWillMount',
         value: function componentWillMount() {
             this.props.listaFetch();
+            this.props.notiFetch();
         }
     }, {
         key: 'render',
         value: function render() {
             console.log(this.props);
-            var lista = this.props.lista;
+            var _props = this.props,
+                lista = _props.lista,
+                noti = _props.noti;
 
             return _react3.default.createElement(
                 _reactNative.View,
                 { style: styles.container, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 85
+                        lineNumber: 87
                     }
                 },
                 _react3.default.createElement(
                     _reactNativeMaps2.default,
-                    {
-                        style: { flex: 1 },
-                        provider: _reactNativeMaps2.default.PROVIDER_GOOGLE,
-                        region: this.state.initialPosition,
-                        __source: {
+                    { style: styles.container, provider: _reactNativeMaps2.default.PROVIDER_GOOGLE, region: this.state.initialPosition, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 86
+                            lineNumber: 89
                         }
                     },
                     _react3.default.createElement(
                         _reactNativeMaps2.default.Marker,
-                        {
-                            coordinate: this.state.markerPosition,
-                            __source: {
+                        { coordinate: this.state.markerPosition, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 91
+                                lineNumber: 90
                             }
                         },
                         _react3.default.createElement(
                             _reactNative.View,
                             { style: styles.radius, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 95
+                                    lineNumber: 91
                                 }
                             },
                             _react3.default.createElement(_reactNative.View, { style: styles.marker, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 96
+                                    lineNumber: 92
                                 }
                             })
                         )
                     ),
                     lista.map(function (lista, index) {
-                        return _react3.default.createElement(_reactNativeMaps2.default.Marker, {
-                            key: index,
-                            coordinate: lista.coord,
-                            pinColor: 'red',
-                            title: lista.title,
-                            __source: {
+                        var n = noti.find(function (noti) {
+                            return noti.tiendaId === lista.owner;
+                        });
+
+                        if (n === undefined) {
+                            n = { has: false };
+                        }
+                        if (n.has === true) {
+                            color = 'green';
+                        }
+                        if (n.has === false) {
+                            color = 'red';
+                        }
+                        return _react3.default.createElement(_reactNativeMaps2.default.Marker, { key: index, coordinate: lista.coord, pinColor: color, title: lista.title, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 103
+                                lineNumber: 110
                             }
                         });
                     })
@@ -206,7 +211,7 @@ var Map = _wrapComponent('Map')(function (_Component) {
                 _react3.default.createElement(_Footer2.default, {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 116
+                        lineNumber: 133
                     }
                 })
             );
@@ -220,10 +225,15 @@ var mapStateToProps = function mapStateToProps(state) {
     var lista = _lodash2.default.map(state.lista, function (val, uid) {
         return _extends({}, val, { uid: uid });
     });
-    return { lista: lista };
+
+    var noti = _lodash2.default.map(state.noti, function (val, uid) {
+        return _extends({}, val, { uid: uid });
+    });
+
+    return { lista: lista, noti: noti };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { listaFetch: _listaActions.listaFetch })(Map);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { listaFetch: _listaActions.listaFetch, notiFetch: _listaActions.notiFetch })(Map);
 
 
 var styles = _reactNative.StyleSheet.create({

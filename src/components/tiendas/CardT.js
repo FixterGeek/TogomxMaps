@@ -5,8 +5,6 @@ export const CardT = ({lista, }) => {
 
   const {direccion, title, uid} = lista;
 
-
-
   return (
     <ListItem onPress={()=>alert(uid)}>
       <Thumbnail square size={80} source={{

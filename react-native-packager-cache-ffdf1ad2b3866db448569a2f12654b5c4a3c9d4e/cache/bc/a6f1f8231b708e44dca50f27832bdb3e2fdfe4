@@ -30,11 +30,9 @@ var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _CardT = require('./CardT');
+var _Cabecera = require('../pedidos/detalle/Cabecera');
 
-var _Footer = require('../footer/Footer');
-
-var _Footer2 = _interopRequireDefault(_Footer);
+var _Cabecera2 = _interopRequireDefault(_Cabecera);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -81,9 +79,10 @@ var ListExample = _wrapComponent('ListExample')(function (_Component) {
       var _this$props = _this.props,
           visto = _this$props.visto,
           items = _this$props.items,
-          tiendaId = _this$props.tiendaId;
+          tiendaId = _this$props.tiendaId,
+          repartidorId = _this$props.repartidorId;
 
-      _this.props.pedidoCreate({ items: [{ cantidad: '2', producto: 'rancheritos' }], visto: visto, tiendaId: key });
+      _this.props.pedidoCreate({ items: [{ cantidad: '2', producto: 'rancheritos' }], visto: visto, tiendaId: key, repartidorId: 'jose' });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -104,7 +103,7 @@ var ListExample = _wrapComponent('ListExample')(function (_Component) {
         _nativeBase.Container,
         { style: styles.back, __source: {
             fileName: _jsxFileName,
-            lineNumber: 26
+            lineNumber: 25
           }
         },
         _react3.default.createElement(
@@ -112,9 +111,15 @@ var ListExample = _wrapComponent('ListExample')(function (_Component) {
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 27
+              lineNumber: 26
             }
           },
+          _react3.default.createElement(_Cabecera2.default, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 28
+            }
+          }),
           lista.map(function (lista, index) {
             return _react3.default.createElement(
               _nativeBase.ListItem,
@@ -166,13 +171,7 @@ var ListExample = _wrapComponent('ListExample')(function (_Component) {
               )
             );
           })
-        ),
-        _react3.default.createElement(_Footer2.default, {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 54
-          }
-        })
+        )
       );
     }
   }]);
@@ -190,9 +189,10 @@ var mapStateToProps = function mapStateToProps(state) {
   var _state$pedidoForm = state.pedidoForm,
       visto = _state$pedidoForm.visto,
       items = _state$pedidoForm.items,
-      tiendaId = _state$pedidoForm.tiendaId;
+      tiendaId = _state$pedidoForm.tiendaId,
+      repartidorId = _state$pedidoForm.repartidorId;
 
-  return { lista: lista, visto: visto, items: items, tiendaId: tiendaId };
+  return { lista: lista, visto: visto, items: items, tiendaId: tiendaId, repartidorId: repartidorId };
 };
 
 var styles = _reactNative.StyleSheet.create({

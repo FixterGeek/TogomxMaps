@@ -5,8 +5,7 @@ import {connect} from 'react-redux';
 import {listaFetch} from '../../actions/listaActions';
 import {pedidoCreate} from '../../actions/PedidosActions'
 import _ from 'lodash';
-import {CardT} from './CardT';
-import Footer from '../footer/Footer';
+import Cabecera from "../pedidos/detalle/Cabecera";
 
 class ListExample extends Component {
   componentWillMount() {
@@ -15,8 +14,8 @@ class ListExample extends Component {
 
 
     onTiendaPress=(key)=>{
-      const {visto, items, tiendaId } = this.props;
-      this.props.pedidoCreate({items:[{cantidad:'2', producto:'rancheritos'}],visto, tiendaId:key })
+      const {visto, items, tiendaId, repartidorId } = this.props;
+      this.props.pedidoCreate({items:[{cantidad:'2', producto:'rancheritos'}],visto, tiendaId:key, repartidorId:'jose'})
     }
 
   render() {
@@ -26,6 +25,7 @@ class ListExample extends Component {
       <Container style={styles.back}>
         <Content>
           {/*{lista.map((lista, index) => <CardT key={index} lista={lista} />)}*/}
+          <Cabecera/>
             {lista.map((lista, index) => {
               return(
 
@@ -51,7 +51,6 @@ class ListExample extends Component {
                 }
             )}
         </Content>
-        <Footer/>
       </Container>
     );
   }
@@ -64,8 +63,8 @@ const mapStateToProps = state => {
     };
   });
 
-  const {visto, items, tiendaId} = state.pedidoForm;
-    return {lista, visto, items, tiendaId};
+  const {visto, items, tiendaId, repartidorId} = state.pedidoForm;
+    return {lista, visto, items, tiendaId, repartidorId};
 };
 
 const styles = StyleSheet.create({

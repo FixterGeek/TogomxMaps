@@ -3,6 +3,7 @@ import {PEDIDO_CREATE} from "../actions/types";
 const INITIAL_STATE= {
     visto: false,
     tiendaId:'',
+    repartidorId:'',
     items:[
         {
             cantidad:'',

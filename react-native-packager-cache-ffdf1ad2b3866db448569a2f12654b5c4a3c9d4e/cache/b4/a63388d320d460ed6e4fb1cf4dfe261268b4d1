@@ -92,7 +92,7 @@ var PedidoLista = _wrapComponent('PedidoLista')(function (_Component) {
             lineNumber: 21
           }
         },
-        _react3.default.createElement(_reactNative.StatusBar, { backgroundColor: '#802154', barStyle: 'light-content', __source: {
+        _react3.default.createElement(_reactNative.StatusBar, { backgroundColor: 'orange', barStyle: 'light-content', __source: {
             fileName: _jsxFileName,
             lineNumber: 22
           }
