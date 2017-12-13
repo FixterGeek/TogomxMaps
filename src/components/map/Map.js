@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
-import Footer from '../footer/Footer';
+import {StyleSheet, Text, View, Dimensions, Platform} from 'react-native';
 import MapView from 'react-native-maps';
 import {connect} from 'react-redux';
-import {listaFetch} from "../../actions/listaActions";
-import {notiFetch} from "../../actions/listaActions";
+import {listaFetch} from '../../actions/listaActions';
+import {notiFetch} from '../../actions/listaActions';
 import _ from 'lodash';
+import Cabecera from '../comun/Cabecera';
+import Footer from '../footer/Footer';
 
 const {width, height} = Dimensions.get('window');
 const SCREEN_HEIGHT = height;
@@ -13,6 +14,10 @@ const SCREEN_WIDTH = width;
 const ASPECT_RADIO = width / height;
 const LATITUDE_DELTA = 0.0150;
 const LONGTITUDE_DELTA = LATITUDE_DELTA * ASPECT_RADIO;
+
+const header = Platform.select({
+  ios: <Cabecera/>,
+});
 
 class Map extends Component <{}> {
   constructor(props) {
@@ -72,18 +77,21 @@ class Map extends Component <{}> {
     navigator.geolocation.clearWatch(this.watchID)
   }
 
-    componentWillMount(){
-        this.props.listaFetch();
-        this.props.notiFetch();
-    }
+  componentWillMount(){
+    this.props.listaFetch();
+    this.props.notiFetch();
+  }
 
   render(){
-        console.log(this.props);
-        const {lista, noti} = this.props;
+    console.log(this.props);
+    const {lista, noti} = this.props;
     return (
       <View style={styles.container}>
-
-          <MapView style={styles.container} provider={MapView.PROVIDER_GOOGLE} region={this.state.initialPosition}>
+        {header}
+          <MapView
+            style={styles.container}
+            provider={MapView.PROVIDER_GOOGLE}
+            region={this.state.initialPosition}>
               <MapView.Marker coordinate={this.state.markerPosition}>
                   <View style={styles.radius}>
                       <View style={styles.marker}/>
@@ -91,42 +99,35 @@ class Map extends Component <{}> {
               </MapView.Marker>
 
               {
-                  lista.map((lista, index) => {
-                      let n=noti.find(noti=>noti.tiendaId===lista.owner);
-
-                      if(n===undefined){
-                          n={has:false}
-                      }
-                      if(n.has===true){
-                          color='green'
-                      }
-                      if(n.has===false){
-                          color='red'
-                      }
-                      return (
-                          <MapView.Marker key={index} coordinate={lista.coord} pinColor={color} title={lista.title}/>
-                      )
-                  })
+                lista.map((lista, index) => {
+                  let n=noti.find(noti=>noti.tiendaId===lista.owner);
+                  if(n===undefined){
+                      n={has:false}
+                  }
+                  if(n.has===true){
+                      color='green'
+                  }
+                  if(n.has===false){
+                      color='red'
+                  }
+                  return (
+                      <MapView.Marker key={index} coordinate={lista.coord} pinColor={color} title={lista.title}/>
+                  )
+                })
               }
 
           </MapView>
 
-
-
           {/*{lista.map(lista=>{
               let n=noti.find(noti=>noti.tiendaId===lista.owner);
-
               if(n===undefined){
-                  n={has:false}
+                n={has:false}
               }
               console.log(n)
               return(
-
-                      <Text style={n.has?{color:'green'}:{color:'red'}} >{lista.title}</Text>
-
+                <Text style={n.has?{color:'green'}:{color:'red'}} >{lista.title}</Text>
               )
           })}*/}
-
           <Footer/>
       </View>
     );
@@ -141,10 +142,8 @@ const mapStateToProps = state => {
     const noti = _.map(state.noti, (val, uid)=>{
         return {...val, uid};
     });
-
     return{lista, noti};
 };
-
 
 export default connect (mapStateToProps, {listaFetch, notiFetch})(Map);
 

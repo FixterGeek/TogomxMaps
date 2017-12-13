@@ -19,10 +19,6 @@ export default class Map extends Component < {} > {
           <Icon name="cart"/>
           <Text>Tiendas</Text>
         </Button>
-        <Button vertical onPress={() => Actions.Pedidos()}>
-          <Icon name="list"/>
-          <Text>Pedidos</Text>
-        </Button>
       </FooterTab>
     </Footer>
   </StyleProvider>

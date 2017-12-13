@@ -1,28 +1,28 @@
 import React, {Component} from 'react';
-import {StyleSheet, Alert} from 'react-native';
+import {StyleSheet, Alert, StatusBar} from 'react-native';
 import {Container, Content, ListItem, Thumbnail, Body, Text} from 'native-base';
 import {connect} from 'react-redux';
 import {listaFetch} from '../../actions/listaActions';
 import {pedidoCreate} from '../../actions/PedidosActions'
 import _ from 'lodash';
-import Cabecera from "../pedidos/detalle/Cabecera";
+import Cabecera from '../comun/Cabecera';
 
 class ListExample extends Component {
   componentWillMount() {
     this.props.listaFetch();
   }
 
-
-    onTiendaPress=(key)=>{
-      const {visto, items, tiendaId, repartidorId } = this.props;
-      this.props.pedidoCreate({items:[{cantidad:'2', producto:'rancheritos'}],visto, tiendaId:key, repartidorId:'jose'})
-    }
+  onTiendaPress=(key)=>{
+    const {visto, items, tiendaId, repartidorId } = this.props;
+    this.props.pedidoCreate({items:[{cantidad:'2', producto:'rancheritos'}],visto, tiendaId:key, repartidorId:'jose'})
+  }
 
   render() {
     const {lista} = this.props;
 
     return (
       <Container style={styles.back}>
+        <StatusBar backgroundColor="orange" barStyle="light-content"/>
         <Content>
           <Cabecera/>
           {
