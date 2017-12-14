@@ -5,6 +5,7 @@ import Cabecera from '../../comun/Cabecera';
 import {store} from '../../../App';
 import * as listaActions from '../../../actions/listaActions';
 import {Actions} from 'react-native-router-flux';
+import {acceptOrder} from '../../../actions/PedidosActions';
 
 const header = Platform.select({
   ios: <Cabecera/>,
@@ -32,9 +33,17 @@ export default class Detalle extends Component <{}> {
     store.dispatch(listaActions.addItemList(item));
   };
 
+    acceptOrder = () =>{
+      store.dispatch(acceptOrder(this.props.o))
+          .then(()=> Actions.Map())
+          .catch(()=> alert('Falló'))
+
+    };
+
   render() {
     const {notifications, text} = this.state;
-    const {p} = this.props;
+    const {p, o} = this.props;
+    console.log(o)
 
     return (
       <Container style={styles.back}>
@@ -45,10 +54,10 @@ export default class Detalle extends Component <{}> {
           <View>
             <ListItem>
                 <Thumbnail square size={80} source={{
-                    uri: p.imagenUsuario
+                    uri: "https://pbs.twimg.com/profile_images/702616676727033857/faFJSbWF.jpg"
                   }}/>
                 <Body style={styles.margin}>
-                  <Text><Text style={styles.negrita}>Direccion:</Text> {p.Direccion}</Text>
+                  <Text><Text style={styles.negrita}>ID:</Text> {o.id}</Text>
                 </Body>
             </ListItem>
           </View>
@@ -72,13 +81,13 @@ export default class Detalle extends Component <{}> {
             </Body>
             <Right>
               <Text style={styles.letra}>Total</Text>
-              <Text note style={styles.letra}>{p.Pagar}</Text>
+              <Text note style={styles.letra}>{o.total}</Text>
             </Right>
           </ListItem>
       </View>
 
         <View style={styles.view}>
-          <Button style={styles.boton1} onPress={()=>Actions.Map()}>
+          <Button style={styles.boton1} onPress={this.acceptOrder}>
             <Text style={styles.texto2}>ACEPTAR</Text>
           </Button>
         </View>

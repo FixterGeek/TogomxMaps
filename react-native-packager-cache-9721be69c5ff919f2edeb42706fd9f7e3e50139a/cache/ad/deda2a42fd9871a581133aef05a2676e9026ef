@@ -1,0 +1,68 @@
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.acceptOrder = exports.SET_CURRENT_ORDER = exports.TIENDAS_CERCA = exports.pedidoCreate = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _types = require('./types');
+
+var _Firebase = require('../Firebase');
+
+var _Firebase2 = _interopRequireDefault(_Firebase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var pedidoCreate = exports.pedidoCreate = function pedidoCreate(_ref) {
+    var visto = _ref.visto,
+        items = _ref.items,
+        tiendaId = _ref.tiendaId;
+
+
+    return function (dispatch) {
+        _Firebase2.default.database().ref('/notifications').push({ visto: visto, items: items, tiendaId: tiendaId }).then(function () {
+            dispatch({ type: _types.PEDIDO_CREATE });
+        });
+    };
+};
+
+var TIENDAS_CERCA = exports.TIENDAS_CERCA = "TIENDAS_CERCA";
+var SET_CURRENT_ORDER = exports.SET_CURRENT_ORDER = "SET_CURRENT_ORDER";
+
+function setNearStores(stores) {
+    return {
+        type: TIENDAS_CERCA,
+        stores: stores
+    };
+}
+
+function setCurrentOrder(order) {
+    return {
+        type: SET_CURRENT_ORDER,
+        order: order
+    };
+}
+
+var acceptOrder = exports.acceptOrder = function acceptOrder(order) {
+    return function (dispatch, getState) {
+        dispatch(setCurrentOrder(order));
+        var deliver = _extends({
+            order: order
+        }, getState().position);
+
+        return fetch('http://192.168.0.108:8000/orders/deliver/', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(deliver)
+        }).then(function (response) {
+            console.log('Respuesta: ', response);
+            if (!response.ok) console.log(response);
+            return response.json();
+        }).then(function (data) {
+            dispatch(setNearStores(data));
+            return;
+        });
+    };
+};

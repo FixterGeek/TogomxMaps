@@ -17,6 +17,7 @@ class PedidoLista extends Component {
 
   render() {
     const {allPedidos} = this.state;
+    console.log(this.props.order)
     return (
       <Content>
         <StatusBar backgroundColor="orange" barStyle="light-content"/>
