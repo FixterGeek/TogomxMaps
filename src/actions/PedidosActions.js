@@ -11,3 +11,52 @@ export const pedidoCreate = ({visto, items, tiendaId}) => {
             });
     };
 };
+
+
+
+export const TIENDAS_CERCA = "TIENDAS_CERCA";
+export const SET_CURRENT_ORDER = "SET_CURRENT_ORDER";
+
+function setNearStores(stores) {
+    return {
+        type: TIENDAS_CERCA,
+        stores
+    }
+}
+
+function setCurrentOrder(order) {
+    return {
+        type: SET_CURRENT_ORDER,
+        order
+    }
+}
+
+
+
+export const acceptOrder = (order)=> (dispatch, getState)=>{
+  dispatch(setCurrentOrder(order));
+  const deliver = {
+      order,
+    ...getState().position
+  };
+
+    return fetch('http://192.168.0.108:8000/orders/deliver/',{
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(deliver)
+    })
+        .then(response =>{
+            console.log('Respuesta: ', response)
+            if(!response.ok) console.log(response)
+            return response.json()
+        })
+        .then(data =>{
+            dispatch (setNearStores(data));
+            return;
+        })
+
+
+
+};

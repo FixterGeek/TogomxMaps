@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, Dimensions, Platform} from 'react-native';
 import MapView from 'react-native-maps';
 import {connect} from 'react-redux';
 import {listaFetch} from '../../actions/listaActions';
-import {notiFetch} from '../../actions/listaActions';
+import {notiFetch, saveSelfPosition} from '../../actions/listaActions';
 import _ from 'lodash';
 import Cabecera from '../comun/Cabecera';
 import Footer from '../footer/Footer';
@@ -51,7 +51,7 @@ class Map extends Component <{}> {
       };
 
       this.setState({initialPosition: initialRegion});
-      this.setState({markerPosition: initialRegion});
+      this.setState({markerPosition: initialRegion})
     }, (error) => console.log(error), {
       enableHighAccuracy: true,
       timeout: 200000,
@@ -70,6 +70,7 @@ class Map extends Component <{}> {
       }
       this.setState({initialPosition: lastRegion})
       this.setState({markerPosition: lastRegion})
+        this.props.saveSelfPosition(lastRegion)
     });
   }
 
@@ -117,17 +118,6 @@ class Map extends Component <{}> {
               }
 
           </MapView>
-
-          {/*{lista.map(lista=>{
-              let n=noti.find(noti=>noti.tiendaId===lista.owner);
-              if(n===undefined){
-                n={has:false}
-              }
-              console.log(n)
-              return(
-                <Text style={n.has?{color:'green'}:{color:'red'}} >{lista.title}</Text>
-              )
-          })}*/}
           <Footer/>
       </View>
     );
@@ -145,7 +135,7 @@ const mapStateToProps = state => {
     return{lista, noti};
 };
 
-export default connect (mapStateToProps, {listaFetch, notiFetch})(Map);
+export default connect (mapStateToProps, {listaFetch, notiFetch, saveSelfPosition})(Map);
 
 const styles = StyleSheet.create({
   container: {
