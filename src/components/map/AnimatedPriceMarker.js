@@ -1,9 +1,5 @@
 import React, { PropTypes } from 'react';
-import {
-  StyleSheet,
-  Text,
-  Animated,
-} from 'react-native';
+import {StyleSheet, Text, Animated} from 'react-native';
 
 class AnimatedPriceMarker extends React.Component {
   render() {
@@ -96,7 +92,6 @@ const styles = StyleSheet.create({
   },
   selectedArrow: {
     borderTopColor: '#4da2ab',
-
   },
   selectedArrowBorder: {
     borderTopColor: '#007a87',

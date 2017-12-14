@@ -9,7 +9,7 @@ export default class Map extends Component < {} > {
   render() {
     return (
       <StyleProvider style={getTheme(material)}>
-      <Footer style={{backgroundColor: 'white'}}>
+      <Footer style={styles.back}>
       <FooterTab>
         <Button vertical onPress={() => Actions.Map()}>
           <Icon name="map"/>
@@ -19,7 +19,6 @@ export default class Map extends Component < {} > {
           <Icon name="cart"/>
           <Text>Tiendas</Text>
         </Button>
-
         <Button vertical onPress={() => Actions.Pedidos()}>
           <Icon name="menu"/>
           <Text>Pedidos</Text>
@@ -34,5 +33,8 @@ export default class Map extends Component < {} > {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  back: {
+    backgroundColor: 'white'
   }
 });

@@ -6,8 +6,8 @@ const INITIAL_STATE= {
     repartidorId:'',
     items:[
         {
-            cantidad:'',
-            producto:'',
+          cantidad:'',
+          producto:'',
         }
     ]
 };

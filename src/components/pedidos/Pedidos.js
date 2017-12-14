@@ -19,22 +19,22 @@ class Pedidos extends Component {
       <Container style={styles.back}>
 
           {
-              orders.map((o,index) => {
-                console.log(o)
-                  return (
-                      <ListItem key={index}>
-                        <TouchableOpacity onPress={()=>Actions.Detalle({o:o})} style={styles.touch}>
-                          <Thumbnail square size={80} source={{
-                              uri: "https://pbs.twimg.com/profile_images/702616676727033857/faFJSbWF.jpg"
-                          }}/>
-                          <Body style={styles.body}>
-                          <Text>ID:{o.id}  </Text>
-                          <Text note="note">Fecha: {o.date}</Text>
-                          </Body>
-                        </TouchableOpacity>
-                      </ListItem>
-                  )
-              })
+            orders.map((o,index) => {
+              console.log(o)
+                return (
+                  <ListItem key={index}>
+                    <TouchableOpacity onPress={()=>Actions.Detalle({o:o})} style={styles.touch}>
+                      <Thumbnail square size={80} source={{
+                          uri: "https://pbs.twimg.com/profile_images/702616676727033857/faFJSbWF.jpg"
+                      }}/>
+                      <Body style={styles.body}>
+                      <Text>ID:{o.id}  </Text>
+                      <Text note="note">Fecha: {o.date}</Text>
+                      </Body>
+                    </TouchableOpacity>
+                  </ListItem>
+                )
+            })
           }
       </Container>
     );

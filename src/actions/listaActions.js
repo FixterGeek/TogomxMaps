@@ -13,42 +13,41 @@ export const listaFetch = () => {
 export const notiFetch =() =>{
   return(dispatch) => {
     firebase.database().ref('/notifications')
-        .on('value', snapshot => {
+      .on('value', snapshot => {
       dispatch({type: NOTI_FETCH_SUCCESS, payload: snapshot.val()})
     })
   }
 }
 
 export const orderFetch =() =>{
-    return(dispatch) => {
-        firebase.database().ref('ordersP')
-            .once('value')
-            .then( snapshot => {
-              let array = [];
-              for (let key in snapshot.val()){
-                array.push(snapshot.val()[key])
-              }
-              dispatch({type: ORDER_FETCH_SUCCESS, orders: array})
-            })
-    }
+  return(dispatch) => {
+    firebase.database().ref('ordersP')
+        .once('value')
+        .then( snapshot => {
+          let array = [];
+          for (let key in snapshot.val()){
+            array.push(snapshot.val()[key])
+          }
+          dispatch({type: ORDER_FETCH_SUCCESS, orders: array})
+        })
+  }
 }
-
 
 export const SAVE_POSITION = "SAVE_POSITION"
 
 function savePosition(position) {
-    return {
-      type: SAVE_POSITION,
-        position
-    }
+  return {
+    type: SAVE_POSITION,
+    position
+  }
 }
 
 
 export const saveSelfPosition = (position) => (dispatch) => {
   const location = {
     coordinates:[
-        position.longitude,
-        position.latitude
+      position.longitude,
+      position.latitude
     ]
   };
   fetch('https://togomx.herokuapp.com/deliver/position/',{
@@ -58,13 +57,13 @@ export const saveSelfPosition = (position) => (dispatch) => {
       },
       body: JSON.stringify(location)
   })
-      .then(response=>{
-        if (!response.ok){
-          console.log('Puto TU', response)
-        }
-        console.log('Puto Yo', response)
-        return;
-      })
+    .then(response=>{
+      if (!response.ok){
+        console.log('Puto TU', response)
+      }
+      console.log('Puto Yo', response)
+      return;
+    })
 
   dispatch(savePosition(location))
 }

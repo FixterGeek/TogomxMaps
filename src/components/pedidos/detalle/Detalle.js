@@ -37,7 +37,6 @@ export default class Detalle extends Component <{}> {
       store.dispatch(acceptOrder(this.props.o))
           .then(()=> Actions.Map())
           .catch(()=> alert('Falló'))
-
     };
 
   render() {

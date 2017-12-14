@@ -131,7 +131,7 @@ export default {
 
   // Footer
   footerHeight: 55,
-  footerDefaultBg: "#fff",
+  footerDefaultBg: "white",
 
   // FooterTab
   tabBarTextColor: "#b3c7f9",

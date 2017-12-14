@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.maps",
+    package = "com.appbasto",
 )
 
 android_resource(
     name = "res",
-    package = "com.maps",
+    package = "com.appbasto",
     res = "src/main/res",
 )
 

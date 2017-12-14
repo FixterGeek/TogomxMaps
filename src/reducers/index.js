@@ -7,12 +7,12 @@ import OrderReducer from './OrderReducer';
 import {positionReducer} from "./positionReducer";
 
 const rootReducer = combineReducers({
-    pedidos: pedidosReducer,
-    lista: ListaReducer,
-    pedidoForm:PedidoReducer,
-    noti: NotiReducer,
-    orders:OrderReducer,
-    position:positionReducer
+  pedidos: pedidosReducer,
+  lista: ListaReducer,
+  pedidoForm:PedidoReducer,
+  noti: NotiReducer,
+  orders:OrderReducer,
+  position:positionReducer
 });
 
 export default rootReducer;

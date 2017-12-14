@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.maps"
+    package="com.appbasto"
     android:versionCode="1"
     android:versionName="1.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -29,8 +29,8 @@
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
         <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyAFSbrybdzkjS18skj1mnRUfv2Ux-ulnfg"/>
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyAFSbrybdzkjS18skj1mnRUfv2Ux-ulnfg"/>
     </application>
 
 </manifest>

@@ -125,14 +125,14 @@ class Map extends Component <{}> {
 }
 
 const mapStateToProps = state => {
-    const lista = _.map(state.lista, (val, uid)=>{
-       return {...val, uid};
-    });
+  const lista = _.map(state.lista, (val, uid)=>{
+     return {...val, uid};
+  });
 
-    const noti = _.map(state.noti, (val, uid)=>{
-        return {...val, uid};
-    });
-    return{lista, noti};
+  const noti = _.map(state.noti, (val, uid)=>{
+      return {...val, uid};
+  });
+  return{lista, noti};
 };
 
 export default connect (mapStateToProps, {listaFetch, notiFetch, saveSelfPosition})(Map);
