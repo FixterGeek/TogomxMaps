@@ -40,7 +40,7 @@ export const acceptOrder = (order)=> (dispatch, getState)=>{
     ...getState().position
   };
 
-    return fetch('http://192.168.0.108:8000/orders/deliver/',{
+    return fetch('https://togomx.herokuapp.com/orders/deliver/',{
         method: 'post',
         headers: {
             'Content-Type': 'application/json'

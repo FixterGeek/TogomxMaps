@@ -51,7 +51,7 @@ export const saveSelfPosition = (position) => (dispatch) => {
         position.latitude
     ]
   };
-  fetch('http://192.168.0.108:8000/deliver/position/',{
+  fetch('https://togomx.herokuapp.com/deliver/position/',{
     method: 'post',
       headers: {
         'Content-Type': 'application/json'
