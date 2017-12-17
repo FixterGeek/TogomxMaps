@@ -1,0 +1,71 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.loginUserreg = exports.phoneChangedreg = exports.direccionChangedreg = exports.nameChangedreg = exports.passwordChangedreg = exports.emailChangedreg = undefined;
+
+var _firebase = require('firebase');
+
+var _firebase2 = _interopRequireDefault(_firebase);
+
+var _reactNativeRouterFlux = require('react-native-router-flux');
+
+var _types = require('./types');
+
+var _nativeBase = require('native-base');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var emailChangedreg = exports.emailChangedreg = function emailChangedreg(text) {
+  return { type: _types.EMAIL_CHANGEDREG, payload: text };
+};
+
+var passwordChangedreg = exports.passwordChangedreg = function passwordChangedreg(text) {
+  return { type: _types.PASSWORD_CHANGEDREG, payload: text };
+};
+
+var nameChangedreg = exports.nameChangedreg = function nameChangedreg(text) {
+  return { type: _types.NAME_CHANGEDREG, payload: text };
+};
+
+var direccionChangedreg = exports.direccionChangedreg = function direccionChangedreg(text) {
+  return { type: _types.DIRECCION_CHANGEDREG, payload: text };
+};
+
+var phoneChangedreg = exports.phoneChangedreg = function phoneChangedreg(text) {
+  return { type: _types.PHONE_CHANGEDRED, payload: text };
+};
+
+var loginUserreg = exports.loginUserreg = function loginUserreg(_ref) {
+  var regis = _ref.regis;
+
+  console.log(regis);
+  var email = regis.email,
+      password = regis.password,
+      names = regis.names,
+      direccion = regis.direccion,
+      phone = regis.phone;
+
+  return function (dispatch) {
+    dispatch({ type: _types.LOGIN_USERREG });
+    _firebase2.default.auth().createUserWithEmailAndPassword(email, password).then(function (user) {
+      return loginUserSuccessreg(dispatch, user);
+    }).then(function () {
+      _firebase2.default.database().ref().child('dev/users').push({ email: email, names: names, direccion: direccion, phone: phone }).then(function () {
+        dispatch({ type: _types.INFO_USER });
+      });
+    }).catch(function () {
+      return loginUserFailreg(dispatch);
+    });
+  };
+};
+
+var loginUserFailreg = function loginUserFailreg(dispatch) {
+  dispatch({ type: _types.LOGIN_USER_FAILREG });
+  _nativeBase.Toast.show({ text: 'Verifica campos!', position: 'bottom', buttonText: 'Ok', type: 'danger' });
+};
+
+var loginUserSuccessreg = function loginUserSuccessreg(dispatch, user) {
+  dispatch({ type: _types.LOGIN_USER_SUCCESSREG, payload: user });
+  _reactNativeRouterFlux.Actions.Principal();
+  _nativeBase.Toast.show({ text: 'Bienvenido!', position: 'bottom', buttonText: 'Ok', type: 'success' });
+};

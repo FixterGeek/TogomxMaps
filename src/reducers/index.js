@@ -5,6 +5,7 @@ import PedidoReducer from "./PedidoReducer";
 import NotiReducer from './NotiReducer';
 import OrderReducer from './OrderReducer';
 import {positionReducer} from "./positionReducer";
+import AuthReducer from "./AuthReducer";
 
 const rootReducer = combineReducers({
   pedidos: pedidosReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   pedidoForm:PedidoReducer,
   noti: NotiReducer,
   orders:OrderReducer,
-  position:positionReducer
+  position:positionReducer,
+    auth:AuthReducer
 });
 
 export default rootReducer;

@@ -4,8 +4,12 @@ import {Footer, FooterTab, Button, Icon, StyleProvider} from 'native-base';
 import getTheme from '../../../native-base-theme/components';
 import material from '../../../native-base-theme/variables/material';
 import {Actions} from 'react-native-router-flux';
+import firebase from '../../Firebase';
 
 export default class Map extends Component < {} > {
+    signOut=()=>{
+      firebase.auth().signOut();
+    };
   render() {
     return (
       <StyleProvider style={getTheme(material)}>
@@ -20,8 +24,12 @@ export default class Map extends Component < {} > {
           <Text>Tiendas</Text>
         </Button>
         <Button vertical onPress={() => Actions.Pedidos()}>
-          <Icon name="menu"/>
+          <Icon name="ios-document"/>
           <Text>Pedidos</Text>
+        </Button>
+        <Button vertical onPress={()=>this.signOut()}>
+          <Icon name="ios-close"/>
+          <Text>Salir</Text>
         </Button>
       </FooterTab>
     </Footer>

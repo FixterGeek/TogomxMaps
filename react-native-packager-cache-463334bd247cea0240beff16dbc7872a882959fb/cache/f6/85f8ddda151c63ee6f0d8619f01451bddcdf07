@@ -1,0 +1,227 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require('./../../../node_modules/react-transform-hmr/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = '/home/jose/Escritorio/TOOOOGOMX/TogomxMaps/src/components/footer/Footer.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require('react-native');
+
+var _nativeBase = require('native-base');
+
+var _components2 = require('../../../native-base-theme/components');
+
+var _components3 = _interopRequireDefault(_components2);
+
+var _material = require('../../../native-base-theme/variables/material');
+
+var _material2 = _interopRequireDefault(_material);
+
+var _reactNativeRouterFlux = require('react-native-router-flux');
+
+var _Firebase = require('../../Firebase');
+
+var _Firebase2 = _interopRequireDefault(_Firebase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  Map: {
+    displayName: 'Map'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/home/jose/Escritorio/TOOOOGOMX/TogomxMaps/src/components/footer/Footer.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var Map = _wrapComponent('Map')(function (_Component) {
+  _inherits(Map, _Component);
+
+  function Map() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Map);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Map.__proto__ || Object.getPrototypeOf(Map)).call.apply(_ref, [this].concat(args))), _this), _this.signOut = function () {
+      _Firebase2.default.auth().signOut();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Map, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react3.default.createElement(
+        _nativeBase.StyleProvider,
+        { style: (0, _components3.default)(_material2.default), __source: {
+            fileName: _jsxFileName,
+            lineNumber: 15
+          }
+        },
+        _react3.default.createElement(
+          _nativeBase.Footer,
+          { style: styles.back, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 16
+            }
+          },
+          _react3.default.createElement(
+            _nativeBase.FooterTab,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 17
+              }
+            },
+            _react3.default.createElement(
+              _nativeBase.Button,
+              { vertical: true, onPress: function onPress() {
+                  return _reactNativeRouterFlux.Actions.Map();
+                }, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 18
+                }
+              },
+              _react3.default.createElement(_nativeBase.Icon, { name: 'map', __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 19
+                }
+              }),
+              _react3.default.createElement(
+                _reactNative.Text,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 20
+                  }
+                },
+                'Mapa'
+              )
+            ),
+            _react3.default.createElement(
+              _nativeBase.Button,
+              { vertical: true, onPress: function onPress() {
+                  return _reactNativeRouterFlux.Actions.Tiendas();
+                }, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 22
+                }
+              },
+              _react3.default.createElement(_nativeBase.Icon, { name: 'cart', __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 23
+                }
+              }),
+              _react3.default.createElement(
+                _reactNative.Text,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 24
+                  }
+                },
+                'Tiendas'
+              )
+            ),
+            _react3.default.createElement(
+              _nativeBase.Button,
+              { vertical: true, onPress: function onPress() {
+                  return _reactNativeRouterFlux.Actions.Pedidos();
+                }, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 26
+                }
+              },
+              _react3.default.createElement(_nativeBase.Icon, { name: 'ios-document', __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 27
+                }
+              }),
+              _react3.default.createElement(
+                _reactNative.Text,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 28
+                  }
+                },
+                'Pedidos'
+              )
+            ),
+            _react3.default.createElement(
+              _nativeBase.Button,
+              { vertical: true, onPress: function onPress() {
+                  return _this2.signOut();
+                }, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 30
+                }
+              },
+              _react3.default.createElement(_nativeBase.Icon, { name: 'ios-close', __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 31
+                }
+              }),
+              _react3.default.createElement(
+                _reactNative.Text,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 32
+                  }
+                },
+                'Salir'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Map;
+}(_react2.Component));
+
+exports.default = Map;
+
+
+var styles = _reactNative.StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  back: {
+    backgroundColor: 'white'
+  }
+});

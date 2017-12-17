@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {Button, Input, Item, Icon, Spinner} from 'native-base';
-import {Actions} from 'react-native-router-flux';
 import Video from 'react-native-video';
 import videop from '../../assets/video/videop.mp4';
 import {connect} from 'react-redux';
@@ -45,12 +44,6 @@ class Login extends Component <{}> {
           repeat
           style={styles.video}/>
 
-        <View style={styles.view4}>
-          <Icon
-            name="ios-arrow-back"
-            style={styles.icon}
-            onPress={() => Actions.pop()}/>
-        </View>
 
         <View>
           <Item style={styles.inputRounded}>
@@ -85,20 +78,7 @@ class Login extends Component <{}> {
 
         </View>
 
-        <View style={styles.view2}>
-          <View style={styles.view3}>
-            <View style={styles.view}>
-              <TouchableOpacity onPress={() => Actions.Recover()}>
-                <Text style={styles.text}>¿Olvidaste tu Contraseña?</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.view}>
-              <TouchableOpacity onPress={() => Actions.Registro()}>
-                <Text style={styles.text1}>Crear Cuenta</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+
       </View>
     );
   }

@@ -1,0 +1,424 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require('./../../../node_modules/react-transform-hmr/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = '/home/jose/Escritorio/TOOOOGOMX/TogomxMaps/src/components/login/Registro.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require('react-native');
+
+var _nativeBase = require('native-base');
+
+var _reactNativeRouterFlux = require('react-native-router-flux');
+
+var _registro = require('../../assets/imgs/registro.jpeg');
+
+var _registro2 = _interopRequireDefault(_registro);
+
+var _reactRedux = require('react-redux');
+
+var _registerActions = require('../../actions/registerActions');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  Registro: {
+    displayName: 'Registro'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/home/jose/Escritorio/TOOOOGOMX/TogomxMaps/src/components/login/Registro.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var Registro = _wrapComponent('Registro')(function (_Component) {
+  _inherits(Registro, _Component);
+
+  function Registro() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Registro);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Registro.__proto__ || Object.getPrototypeOf(Registro)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      usuario: {}
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Registro, [{
+    key: 'onEmailChange',
+    value: function onEmailChange(text) {
+      this.props.emailChangedreg(text);
+    }
+  }, {
+    key: 'onPhoneChange',
+    value: function onPhoneChange(text) {
+      this.props.phoneChangedreg(text);
+    }
+  }, {
+    key: 'onPasswordChange',
+    value: function onPasswordChange(text) {
+      this.props.passwordChangedreg(text);
+    }
+  }, {
+    key: 'onNameChange',
+    value: function onNameChange(text) {
+      this.props.nameChangedreg(text);
+    }
+  }, {
+    key: 'onDireccionChange',
+    value: function onDireccionChange(text) {
+      this.props.direccionChangedreg(text);
+    }
+  }, {
+    key: 'onButtonPress',
+    value: function onButtonPress() {
+      var regis = this.props.regis;
+
+      this.props.loginUserreg({ regis: regis });
+    }
+  }, {
+    key: 'renderButton',
+    value: function renderButton() {
+      if (this.props.regis.loading) {
+        return _react3.default.createElement(_nativeBase.Spinner, { size: 'large', color: 'white', __source: {
+            fileName: _jsxFileName,
+            lineNumber: 41
+          }
+        });
+      }
+
+      return _react3.default.createElement(
+        _reactNative.View,
+        { style: styles.content, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 45
+          }
+        },
+        _react3.default.createElement(
+          _nativeBase.Button,
+          { block: true, style: styles.button, onPress: this.onButtonPress.bind(this), __source: {
+              fileName: _jsxFileName,
+              lineNumber: 46
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.Text,
+            { style: styles.boton, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 47
+              }
+            },
+            'INICIAR SESI\xD3N'
+          )
+        )
+      );
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var usuario = this.props.users;
+      this.setState({ usuario: usuario });
+      console.log(usuario);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react3.default.createElement(
+        _reactNative.ImageBackground,
+        { source: _registro2.default, style: styles.img, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 61
+          }
+        },
+        _react3.default.createElement(
+          _reactNative.View,
+          { style: styles.estiloImageB, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 63
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.View,
+            { style: styles.view4, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 64
+              }
+            },
+            _react3.default.createElement(_nativeBase.Icon, { name: 'ios-arrow-back', style: styles.icon2, onPress: function onPress() {
+                return _reactNativeRouterFlux.Actions.pop();
+              }, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 65
+              }
+            })
+          ),
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 67
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.View,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 68
+                }
+              },
+              _react3.default.createElement(
+                _nativeBase.Item,
+                { style: styles.inputRounded, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 69
+                  }
+                },
+                _react3.default.createElement(_nativeBase.Input, {
+                  placeholder: 'Nombre',
+                  placeholderTextColor: '#fff',
+                  returnKeyType: 'next',
+                  autoCapitalize: 'none',
+                  style: styles.color,
+                  onChangeText: this.onNameChange.bind(this),
+                  value: this.props.names, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 70
+                  }
+                })
+              )
+            ),
+            _react3.default.createElement(
+              _reactNative.View,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 81
+                }
+              },
+              _react3.default.createElement(
+                _nativeBase.Item,
+                { style: styles.inputRounded, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 82
+                  }
+                },
+                _react3.default.createElement(_nativeBase.Input, {
+                  name: 'direccion',
+                  placeholder: 'Direcci\xF3n',
+                  placeholderTextColor: '#fff',
+                  returnKeyType: 'next',
+                  autoCapitalize: 'none',
+                  style: styles.color,
+                  onChangeText: this.onDireccionChange.bind(this),
+                  value: this.props.direccion, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 83
+                  }
+                })
+              )
+            ),
+            _react3.default.createElement(
+              _reactNative.View,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 95
+                }
+              },
+              _react3.default.createElement(
+                _nativeBase.Item,
+                { style: styles.inputRounded, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 96
+                  }
+                },
+                _react3.default.createElement(_nativeBase.Input, {
+                  name: 'correo',
+                  placeholder: 'Correo Electronico',
+                  keyboardType: 'email-address',
+                  placeholderTextColor: '#fff',
+                  returnKeyType: 'next',
+                  autoCapitalize: 'none',
+                  style: styles.color,
+                  onChangeText: this.onEmailChange.bind(this),
+                  value: this.props.email, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 97
+                  }
+                })
+              )
+            ),
+            _react3.default.createElement(
+              _reactNative.View,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 110
+                }
+              },
+              _react3.default.createElement(
+                _nativeBase.Item,
+                { style: styles.inputRounded, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 111
+                  }
+                },
+                _react3.default.createElement(_nativeBase.Input, {
+                  name: 'contrase\xF1a',
+                  placeholder: 'Contrase\xF1a',
+                  placeholderTextColor: '#fff',
+                  returnKeyType: 'next',
+                  autoCapitalize: 'none',
+                  secureTextEntry: true,
+                  style: styles.color,
+                  onChangeText: this.onPasswordChange.bind(this),
+                  value: this.props.password, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 112
+                  }
+                })
+              )
+            ),
+            _react3.default.createElement(_reactNative.View, {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 125
+              }
+            }),
+            _react3.default.createElement(
+              _reactNative.View,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 127
+                }
+              },
+              _react3.default.createElement(
+                _nativeBase.Item,
+                { style: styles.inputRounded, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 128
+                  }
+                },
+                _react3.default.createElement(_nativeBase.Input, {
+                  style: styles.color,
+                  name: 'telefono',
+                  placeholder: 'Telefono Celular',
+                  keyboardType: 'numeric',
+                  placeholderTextColor: '#fff',
+                  returnKeyType: 'next',
+                  onChangeText: this.onPhoneChange.bind(this),
+                  value: this.props.phone,
+                  autoCapitalize: 'none', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 129
+                  }
+                })
+              )
+            )
+          ),
+          this.renderButton()
+        )
+      );
+    }
+  }]);
+
+  return Registro;
+}(_react2.Component));
+
+var mapStateToProps = function mapStateToProps(_ref2) {
+  var regis = _ref2.regis;
+
+  console.log(regis);
+  return { regis: regis };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { emailChangedreg: _registerActions.emailChangedreg, passwordChangedreg: _registerActions.passwordChangedreg, loginUserreg: _registerActions.loginUserreg, direccionChangedreg: _registerActions.direccionChangedreg, nameChangedreg: _registerActions.nameChangedreg, phoneChangedreg: _registerActions.phoneChangedreg })(Registro);
+
+
+var styles = _reactNative.StyleSheet.create({
+  img: {
+    justifyContent: 'flex-end',
+    flex: 2,
+    height: null,
+    width: null
+  },
+  inputRounded: {
+    width: '86%',
+    borderColor: '#000',
+    borderWidth: 1.5,
+    backgroundColor: 'transparent'
+  },
+  boton: {
+    color: 'white',
+    fontWeight: 'bold'
+  },
+  button: {
+    width: '78%',
+    alignSelf: 'center',
+    backgroundColor: 'orange'
+  },
+  content: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    margin: 15
+  },
+  inputRounded: {
+    marginRight: 40,
+    marginLeft: 40,
+    marginBottom: 10,
+    borderColor: 'orange',
+    borderWidth: 1.5
+  },
+  color: {
+    color: 'white'
+  },
+  estiloImageB: {
+    backgroundColor: 'rgba(0,0,0,.5)',
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center'
+  },
+  view4: {
+    flex: 1,
+    margin: 20
+  },
+  icon2: {
+    backgroundColor: 'transparent',
+    color: 'orange',
+    fontSize: 50
+  }
+});

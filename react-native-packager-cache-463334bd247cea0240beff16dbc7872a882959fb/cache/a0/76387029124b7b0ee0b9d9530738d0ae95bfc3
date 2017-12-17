@@ -1,0 +1,45 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = require('redux');
+
+var _pedidosReducer = require('./pedidosReducer');
+
+var _pedidosReducer2 = _interopRequireDefault(_pedidosReducer);
+
+var _ListaReducer = require('./ListaReducer');
+
+var _ListaReducer2 = _interopRequireDefault(_ListaReducer);
+
+var _PedidoReducer = require('./PedidoReducer');
+
+var _PedidoReducer2 = _interopRequireDefault(_PedidoReducer);
+
+var _NotiReducer = require('./NotiReducer');
+
+var _NotiReducer2 = _interopRequireDefault(_NotiReducer);
+
+var _OrderReducer = require('./OrderReducer');
+
+var _OrderReducer2 = _interopRequireDefault(_OrderReducer);
+
+var _positionReducer = require('./positionReducer');
+
+var _AuthReducer = require('./AuthReducer');
+
+var _AuthReducer2 = _interopRequireDefault(_AuthReducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var rootReducer = (0, _redux.combineReducers)({
+  pedidos: _pedidosReducer2.default,
+  lista: _ListaReducer2.default,
+  pedidoForm: _PedidoReducer2.default,
+  noti: _NotiReducer2.default,
+  orders: _OrderReducer2.default,
+  position: _positionReducer.positionReducer,
+  auth: _AuthReducer2.default
+});
+
+exports.default = rootReducer;

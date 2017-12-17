@@ -35,7 +35,8 @@ export default class Detalle extends Component <{}> {
 
     acceptOrder = () =>{
       store.dispatch(acceptOrder(this.props.o))
-          .then(()=> Actions.Map())
+          .then(()=> Actions.pop())
+          .then(()=> Actions.pop())
           .catch(()=> alert('Falló'))
     };
 
@@ -43,6 +44,8 @@ export default class Detalle extends Component <{}> {
     const {notifications, text} = this.state;
     const {p, o} = this.props;
     console.log(o)
+      let products = o.products;
+    console.log(products);
 
     return (
       <Container style={styles.back}>
@@ -60,23 +63,37 @@ export default class Detalle extends Component <{}> {
                 </Body>
             </ListItem>
           </View>
+        <ListItem itemDivider>
+          <Text>PRODUCTOS</Text>
+        </ListItem>
 
-          {/*{
-            allProducts.map((p, index) => {
-              return <ListaProductos key={index} index={index} p={p}/>
+        {
+              products.map((p, index) => {
+                let image = p.product.image;
+              return (
+                  <ListItem avatar key={index}>
+                    <Left>
+                      <Thumbnail source={{uri: image}}/>
+                    </Left>
+                    <Body>
+                    <Text>{p.product.name}</Text>
+                    <Text note>Cantidad: {p.amount}</Text>
+                    </Body>
+                    <Right>
+                      <Text note>$ {p.product.price}</Text>
+                    </Right>
+                  </ListItem>
+              )
             })
-          }*/}
+          }
 
         </ScrollView>
 
         <View style={styles.back}>
           <ListItem avatar>
-            <Left>
-              <Icon name="cart" style={styles.icon}/>
-            </Left>
-            <Body>
+            <Body style={{flexDirection:'row'}}>
             <Text style={styles.letra}>Cantidad de productos</Text>
-            <Text note style={styles.letra}>5</Text>
+            <Text note style={styles.letra}>{products.length}</Text>
             </Body>
             <Right>
               <Text style={styles.letra}>Total</Text>
@@ -127,6 +144,7 @@ const styles = StyleSheet.create({
     width: 56
   },
   letra: {
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+      margin: 5
 }
 });

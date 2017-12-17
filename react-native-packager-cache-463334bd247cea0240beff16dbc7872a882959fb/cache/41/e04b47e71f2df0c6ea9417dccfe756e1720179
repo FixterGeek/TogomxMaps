@@ -1,0 +1,70 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.saveSelfPosition = exports.SAVE_POSITION = exports.orderFetch = exports.notiFetch = exports.listaFetch = undefined;
+
+var _Firebase = require('../Firebase');
+
+var _Firebase2 = _interopRequireDefault(_Firebase);
+
+var _types = require('./types');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var listaFetch = exports.listaFetch = function listaFetch() {
+  return function (dispatch) {
+    _Firebase2.default.database().ref('tiendas').on('value', function (snapshot) {});
+  };
+};
+
+var notiFetch = exports.notiFetch = function notiFetch() {
+  return function (dispatch) {
+    _Firebase2.default.database().ref('/notifications').on('value', function (snapshot) {
+      dispatch({ type: _types.NOTI_FETCH_SUCCESS, payload: snapshot.val() });
+    });
+  };
+};
+
+var orderFetch = exports.orderFetch = function orderFetch() {
+  return function (dispatch) {
+    _Firebase2.default.database().ref('ordersP').once('value').then(function (snapshot) {
+      var array = [];
+      for (var key in snapshot.val()) {
+        array.push(snapshot.val()[key]);
+      }
+      dispatch({ type: _types.ORDER_FETCH_SUCCESS, orders: array });
+    });
+  };
+};
+
+var SAVE_POSITION = exports.SAVE_POSITION = "SAVE_POSITION";
+
+function savePosition(position) {
+  return {
+    type: SAVE_POSITION,
+    position: position
+  };
+}
+
+var saveSelfPosition = exports.saveSelfPosition = function saveSelfPosition(position) {
+  return function (dispatch) {
+    var location = {
+      coordinates: [position.longitude, position.latitude]
+    };
+    fetch('https://togomx.herokuapp.com/deliver/position/', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(location)
+    }).then(function (response) {
+      if (!response.ok) {
+        console.log('Puto TU', response);
+      }
+      console.log('Puto Yo', response);
+      return;
+    });
+
+    dispatch(savePosition(location));
+  };
+};

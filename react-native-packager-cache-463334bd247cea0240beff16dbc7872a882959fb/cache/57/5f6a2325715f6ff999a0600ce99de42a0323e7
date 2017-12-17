@@ -1,0 +1,52 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sendEmail = exports.vemailChangedrec = exports.emailChangedrec = undefined;
+
+var _firebase = require('firebase');
+
+var _firebase2 = _interopRequireDefault(_firebase);
+
+var _reactNativeRouterFlux = require('react-native-router-flux');
+
+var _types = require('./types');
+
+var _nativeBase = require('native-base');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var emailChangedrec = exports.emailChangedrec = function emailChangedrec(text) {
+  return { type: _types.EMAIL_CHANGEDREC, payload: text };
+};
+
+var vemailChangedrec = exports.vemailChangedrec = function vemailChangedrec(text) {
+  return { type: _types.VEMAIL_CHANGEDREC, payload: text };
+};
+
+var sendEmail = exports.sendEmail = function sendEmail(_ref) {
+  var recover = _ref.recover;
+  var emailrec = recover.emailrec,
+      veriemail = recover.veriemail;
+
+  return function (dispatch) {
+    dispatch({ type: _types.SEND_EMAIL });
+    if (emailrec == veriemail && emailrec != null && veriemail != null) {
+      _firebase2.default.auth().sendPasswordResetEmail(emailrec).then(function (user) {
+        return sendEmailSuccess(dispatch, user);
+      }).catch(function () {
+        return sendEmailFail(dispatch);
+      });
+    }
+  };
+};
+
+var sendEmailFail = function sendEmailFail(dispatch) {
+  dispatch({ type: _types.SEND_EMAIL_FAIL });
+  _nativeBase.Toast.show({ text: 'Verifica campos!', position: 'bottom', buttonText: 'Ok', type: 'danger' });
+};
+
+var sendEmailSuccess = function sendEmailSuccess(dispatch, user) {
+  dispatch({ type: _types.SEND_EMAIL_SUCCESS, payload: user });
+  _nativeBase.Toast.show({ text: 'Revisa tu correo y continua', position: 'bottom', buttonText: 'Okay', type: 'success' });
+  _reactNativeRouterFlux.Actions.Login();
+};

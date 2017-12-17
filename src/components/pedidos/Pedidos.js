@@ -7,6 +7,7 @@ import {Container} from 'native-base';
 import {orderFetch} from "../../actions/listaActions";
 import _ from 'lodash';
 import {Actions} from 'react-native-router-flux';
+import Cabecera from "../comun/Cabecera";
 
 class Pedidos extends Component {
     componentWillMount(){
@@ -17,10 +18,15 @@ class Pedidos extends Component {
         console.log(orders)
     return (
       <Container style={styles.back}>
+          <Cabecera/>
 
           {
             orders.map((o,index) => {
-              console.log(o)
+              console.log(o);
+                let date=new Date(o.date)
+                let nDate = date.toDateString();
+                console.log(date.toDateString())
+
                 return (
                   <ListItem key={index}>
                     <TouchableOpacity onPress={()=>Actions.Detalle({o:o})} style={styles.touch}>
@@ -29,7 +35,7 @@ class Pedidos extends Component {
                       }}/>
                       <Body style={styles.body}>
                       <Text>ID:{o.id}  </Text>
-                      <Text note="note">Fecha: {o.date}</Text>
+                      <Text note="note">DATE: {nDate}</Text>
                       </Body>
                     </TouchableOpacity>
                   </ListItem>

@@ -12,6 +12,7 @@ export const passwordChanged = (text) => {
 };
 
 export const loginUser = ({auth}) => {
+  console.log(auth)
   let {password, email} = auth
   return(dispatch) => {
     dispatch({type: LOGIN_USER});
@@ -27,6 +28,7 @@ const loginUserFail = (dispatch) => {
 
 const loginUserSuccess = (dispatch) => {
   dispatch({type: LOGIN_USER_SUCCESS});
-  Toast.show({text: 'Bienvenido!', position: 'bottom', buttonText: 'Okay', type: 'success'})
-  Actions.Principal();
+  Toast.show({text: 'Bienvenido!', position: 'bottom', buttonText: 'Okay', type: 'success'});
+
+  Actions.Map();
 };

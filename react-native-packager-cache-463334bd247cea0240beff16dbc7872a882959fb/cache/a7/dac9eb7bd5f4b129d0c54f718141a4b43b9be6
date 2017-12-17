@@ -1,0 +1,440 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require('./../../../../node_modules/react-transform-hmr/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jsxFileName = '/home/jose/Escritorio/TOOOOGOMX/TogomxMaps/src/components/pedidos/detalle/Detalle.js';
+
+var _reactNative = require('react-native');
+
+var _nativeBase = require('native-base');
+
+var _Cabecera = require('../../comun/Cabecera');
+
+var _Cabecera2 = _interopRequireDefault(_Cabecera);
+
+var _App = require('../../../App');
+
+var _listaActions = require('../../../actions/listaActions');
+
+var listaActions = _interopRequireWildcard(_listaActions);
+
+var _reactNativeRouterFlux = require('react-native-router-flux');
+
+var _PedidosActions = require('../../../actions/PedidosActions');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  Detalle: {
+    displayName: 'Detalle'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/home/jose/Escritorio/TOOOOGOMX/TogomxMaps/src/components/pedidos/detalle/Detalle.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var header = _reactNative.Platform.select({
+  ios: _react3.default.createElement(_Cabecera2.default, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    }
+  })
+});
+
+var Detalle = _wrapComponent('Detalle')(function (_Component) {
+  _inherits(Detalle, _Component);
+
+  function Detalle() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Detalle);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Detalle.__proto__ || Object.getPrototypeOf(Detalle)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      notifications: []
+    }, _this.guardar = function () {
+      var text = _this.state.text;
+
+      var item = {
+        id: text,
+        name: text
+      };
+      _App.store.dispatch(listaActions.addItemList(item));
+    }, _this.acceptOrder = function () {
+      _App.store.dispatch((0, _PedidosActions.acceptOrder)(_this.props.o)).then(function () {
+        return _reactNativeRouterFlux.Actions.pop();
+      }).then(function () {
+        return _reactNativeRouterFlux.Actions.pop();
+      }).catch(function () {
+        return alert('Falló');
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Detalle, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      this.setState({ notifications: _App.store.getState().notifications });
+      this.unsubscribe = _App.store.subscribe(function () {
+        var _store$getState = _App.store.getState(),
+            notifications = _store$getState.notifications;
+
+        _this2.setState({ notifications: notifications });
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _state = this.state,
+          notifications = _state.notifications,
+          text = _state.text;
+      var _props = this.props,
+          p = _props.p,
+          o = _props.o;
+
+      console.log(o);
+      var products = o.products;
+      console.log(products);
+
+      return _react3.default.createElement(
+        _nativeBase.Container,
+        { style: styles.back, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 51
+          }
+        },
+        header,
+        _react3.default.createElement(_reactNative.StatusBar, { backgroundColor: 'orange', barStyle: 'light-content', __source: {
+            fileName: _jsxFileName,
+            lineNumber: 53
+          }
+        }),
+        _react3.default.createElement(
+          _reactNative.ScrollView,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 54
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 56
+              }
+            },
+            _react3.default.createElement(
+              _nativeBase.ListItem,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 57
+                }
+              },
+              _react3.default.createElement(_nativeBase.Thumbnail, { square: true, size: 80, source: {
+                  uri: "https://pbs.twimg.com/profile_images/702616676727033857/faFJSbWF.jpg"
+                }, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 58
+                }
+              }),
+              _react3.default.createElement(
+                _nativeBase.Body,
+                { style: styles.margin, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 61
+                  }
+                },
+                _react3.default.createElement(
+                  _reactNative.Text,
+                  {
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 62
+                    }
+                  },
+                  _react3.default.createElement(
+                    _reactNative.Text,
+                    { style: styles.negrita, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 62
+                      }
+                    },
+                    'ID:'
+                  ),
+                  ' ',
+                  o.id
+                )
+              )
+            )
+          ),
+          _react3.default.createElement(
+            _nativeBase.ListItem,
+            { itemDivider: true, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 66
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 67
+                }
+              },
+              'PRODUCTOS'
+            )
+          ),
+          products.map(function (p, index) {
+            var image = p.product.image;
+            return _react3.default.createElement(
+              _nativeBase.ListItem,
+              { avatar: true, key: index, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 74
+                }
+              },
+              _react3.default.createElement(
+                _nativeBase.Left,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 75
+                  }
+                },
+                _react3.default.createElement(_nativeBase.Thumbnail, { source: { uri: image }, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 76
+                  }
+                })
+              ),
+              _react3.default.createElement(
+                _nativeBase.Body,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 78
+                  }
+                },
+                _react3.default.createElement(
+                  _reactNative.Text,
+                  {
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 79
+                    }
+                  },
+                  p.product.name
+                ),
+                _react3.default.createElement(
+                  _reactNative.Text,
+                  { note: true, __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 80
+                    }
+                  },
+                  'Cantidad: ',
+                  p.amount
+                )
+              ),
+              _react3.default.createElement(
+                _nativeBase.Right,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 82
+                  }
+                },
+                _react3.default.createElement(
+                  _reactNative.Text,
+                  { note: true, __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 83
+                    }
+                  },
+                  '$ ',
+                  p.product.price
+                )
+              )
+            );
+          })
+        ),
+        _react3.default.createElement(
+          _reactNative.View,
+          { style: styles.back, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 92
+            }
+          },
+          _react3.default.createElement(
+            _nativeBase.ListItem,
+            { avatar: true, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 93
+              }
+            },
+            _react3.default.createElement(
+              _nativeBase.Body,
+              { style: { flexDirection: 'row' }, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 94
+                }
+              },
+              _react3.default.createElement(
+                _reactNative.Text,
+                { style: styles.letra, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 95
+                  }
+                },
+                'Cantidad de productos'
+              ),
+              _react3.default.createElement(
+                _reactNative.Text,
+                { note: true, style: styles.letra, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 96
+                  }
+                },
+                products.length
+              )
+            ),
+            _react3.default.createElement(
+              _nativeBase.Right,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 98
+                }
+              },
+              _react3.default.createElement(
+                _reactNative.Text,
+                { style: styles.letra, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 99
+                  }
+                },
+                'Total'
+              ),
+              _react3.default.createElement(
+                _reactNative.Text,
+                { note: true, style: styles.letra, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 100
+                  }
+                },
+                o.total
+              )
+            )
+          )
+        ),
+        _react3.default.createElement(
+          _reactNative.View,
+          { style: styles.view, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 105
+            }
+          },
+          _react3.default.createElement(
+            _nativeBase.Button,
+            { style: styles.boton1, onPress: this.acceptOrder, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 106
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.Text,
+              { style: styles.texto2, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 107
+                }
+              },
+              'ACEPTAR'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Detalle;
+}(_react2.Component));
+
+exports.default = Detalle;
+
+
+var styles = _reactNative.StyleSheet.create({
+  back: {
+    backgroundColor: 'white'
+  },
+  margin: {
+    marginLeft: 10
+  },
+  negrita: {
+    fontWeight: 'bold'
+  },
+  view: {
+    flexDirection: 'row'
+  },
+  boton1: {
+    width: '100%',
+    backgroundColor: 'green',
+    justifyContent: 'center'
+  },
+  texto2: {
+    color: 'white',
+    fontSize: 20
+  },
+  boton2: {
+    width: '50%',
+    backgroundColor: 'red',
+    justifyContent: 'center'
+  },
+  icon: {
+    color: 'white',
+    width: 56
+  },
+  letra: {
+    fontWeight: 'bold',
+    margin: 5
+  }
+});

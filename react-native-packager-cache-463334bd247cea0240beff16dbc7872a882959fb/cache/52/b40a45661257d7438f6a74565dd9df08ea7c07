@@ -1,0 +1,53 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.loginUser = exports.passwordChanged = exports.emailChanged = undefined;
+
+var _firebase = require('firebase');
+
+var _firebase2 = _interopRequireDefault(_firebase);
+
+var _reactNativeRouterFlux = require('react-native-router-flux');
+
+var _types = require('./types');
+
+var _nativeBase = require('native-base');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var emailChanged = exports.emailChanged = function emailChanged(text) {
+  return { type: _types.EMAIL_CHANGED, payload: text };
+};
+
+var passwordChanged = exports.passwordChanged = function passwordChanged(text) {
+  return { type: _types.PASSWORD_CHANGED, payload: text };
+};
+
+var loginUser = exports.loginUser = function loginUser(_ref) {
+  var auth = _ref.auth;
+
+  console.log(auth);
+  var password = auth.password,
+      email = auth.email;
+
+  return function (dispatch) {
+    dispatch({ type: _types.LOGIN_USER });
+    _firebase2.default.auth().signInWithEmailAndPassword(email, password).then(function (user) {
+      return loginUserSuccess(dispatch, user);
+    }).catch(function () {
+      return loginUserFail(dispatch);
+    });
+  };
+};
+
+var loginUserFail = function loginUserFail(dispatch) {
+  dispatch({ type: _types.LOGIN_USER_FAIL });
+  _nativeBase.Toast.show({ text: 'Autenticación Fallida!', position: 'bottom', buttonText: 'Ok', type: 'danger' });
+};
+
+var loginUserSuccess = function loginUserSuccess(dispatch) {
+  dispatch({ type: _types.LOGIN_USER_SUCCESS });
+  _nativeBase.Toast.show({ text: 'Bienvenido!', position: 'bottom', buttonText: 'Okay', type: 'success' });
+
+  _reactNativeRouterFlux.Actions.Map();
+};
