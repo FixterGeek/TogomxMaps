@@ -31,12 +31,15 @@ function setCurrentOrder(order) {
 
 export const acceptOrder = (order)=> (dispatch, getState)=>{
   dispatch(setCurrentOrder(order));
+  let position = getState().position;
+  if(Object.keys(position).length < 1) return;
   const deliver = {
       order,
-    ...getState().position
+    ...position
   };
 
   return fetch('https://togomx.herokuapp.com/orders/deliver/',{
+    //return fetch("https://togomx.herokuapp.com/stores/",{
     method: 'post',
     headers: {
         'Content-Type': 'application/json'
@@ -45,12 +48,13 @@ export const acceptOrder = (order)=> (dispatch, getState)=>{
   })
     .then(response =>{
       console.log('Respuesta: ', response)
-      if(!response.ok) console.log(response)
+      if(!response.ok) throw new Error(response.statusText);
       return response.json()
     })
     .then(data =>{
       dispatch (setNearStores(data));
-      return data;
+      console.log(data);
+      return Promise.resolve(data);
     })
-      .catch(err=>console.log(err));
+      .catch(e=>Promise.reject(e));
 };

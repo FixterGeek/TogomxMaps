@@ -11,7 +11,7 @@ import Cabecera from '../comun/Cabecera';
 import Footer from '../footer/Footer';
 //redux
 import {connect} from 'react-redux';
-import {saveSelfPosition} from "../../actions/listaActions";
+import {saveSelfPosition, notiFetch} from "../../actions/listaActions";
 import MapStyles from './mapStyle.json';
 
 
@@ -90,17 +90,22 @@ class Map extends Component{
                 };
                 this.setState({region});
                 this.props.saveSelfPosition(region);
+                //console.log(region)
             }
         );
 
     };
 
     componentDidMount(){
-        //this.geoLocate();
+        this.geoLocate();
     }
 
     componentWillUnmount() {
         navigator.geolocation.clearWatch(this.watchID)
+    }
+
+    componentWillMount(){
+        this.props.notiFetch();
     }
 
 
@@ -111,7 +116,7 @@ class Map extends Component{
                 <MapView
                     loadingEnabled
                     showsUserLocation={true}
-                    followsUserLocation={true}
+                    followUserLocation={true}
                     ref={ref=>this.map = ref}
                     initialRegion={this.state.region}
                     loadingIndicatorColor={"orange"}
@@ -119,13 +124,15 @@ class Map extends Component{
                     customMapStyle={MapStyles}
                     provider={ PROVIDER_GOOGLE }
                     showsMyLocationButton
-                    region={this.state.region}
 
                 >
                     {
                         this.props.tiendas.map((tienda, index)=>{
+                            let notification =  this.props.noti.find(n=>n.tiendaId === tienda.firebaseKey);
+                            let color = "orange";
+                            if(notification) color = notification.has ? "green" : "orange";
                             return(
-                                <MapView.Marker key={index} coordinate={tienda.coord}/>
+                                <MapView.Marker pinColor={color} title={tienda.title} key={index} coordinate={tienda.coord}/>
                             );
                         })
                     }
@@ -172,10 +179,11 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state, ownProps){
-    console.log("tiendas: ", state.tiendas)
+    console.log("notificaciones: ", state.noti)
     return{
-        tiendas: state.tiendas
+        tiendas: state.tiendas,
+        noti:state.noti
     }
 }
 
-export default Map = connect(mapStateToProps, {saveSelfPosition})(Map)
+export default Map = connect(mapStateToProps, {saveSelfPosition, notiFetch})(Map)

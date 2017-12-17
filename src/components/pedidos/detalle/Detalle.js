@@ -36,15 +36,16 @@ export default class Detalle extends Component <{}> {
     acceptOrder = () =>{
       store.dispatch(acceptOrder(this.props.o))
           .then(()=> Actions.Map())
-          .catch(()=> alert('Falló'))
+          .catch(e=> {
+            console.log(e);
+            alert("No hay ninguna tienda cerca U_U")
+          });
     };
 
   render() {
     const {notifications, text} = this.state;
     const {p, o} = this.props;
-    console.log(o)
       let products = o.products;
-    console.log(products);
 
     return (
       <Container style={styles.back}>

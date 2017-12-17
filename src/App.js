@@ -3,6 +3,8 @@ import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
 import Routes from './Routes';
 /*import {loadLista} from './actions/listaActions';*/
+console.disableYellowBox = true;
+//console.ignoredYellowBox = ["Warning: Each"];
 
 export const store = configureStore();
 /*store.dispatch(loadLista());*/

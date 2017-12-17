@@ -12,12 +12,17 @@ export const listaFetch = () => {
 
 export const notiFetch =() =>{
   return(dispatch) => {
-    firebase.database().ref('/notifications')
-      .on('value', snapshot => {
-      dispatch({type: NOTI_FETCH_SUCCESS, payload: snapshot.val()})
+    firebase.database().ref('notifications')
+      .on("child_changed", snap => {
+         // console.log(snapshot.val())
+          let noti = {
+            key:snap.key,
+              ...snap.val()
+          };
+      dispatch({type: NOTI_FETCH_SUCCESS, noti})
     })
   }
-}
+};
 
 export const orderFetch =() =>{
   return(dispatch) => {
