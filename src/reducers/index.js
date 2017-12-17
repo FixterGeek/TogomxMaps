@@ -9,7 +9,7 @@ import AuthReducer from "./AuthReducer";
 
 const rootReducer = combineReducers({
   pedidos: pedidosReducer,
-  lista: ListaReducer,
+  tiendas: ListaReducer,
   pedidoForm:PedidoReducer,
   noti: NotiReducer,
   orders:OrderReducer,

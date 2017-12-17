@@ -35,8 +35,7 @@ export default class Detalle extends Component <{}> {
 
     acceptOrder = () =>{
       store.dispatch(acceptOrder(this.props.o))
-          .then(()=> Actions.pop())
-          .then(()=> Actions.pop())
+          .then(()=> Actions.Map())
           .catch(()=> alert('Falló'))
     };
 

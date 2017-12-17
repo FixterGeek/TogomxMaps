@@ -25,6 +25,7 @@ class Inicio extends Component {
                 {this.state.loggedIn
                     ? <Map/>
                     : <Login/>}
+
             </Container>
         );
     }

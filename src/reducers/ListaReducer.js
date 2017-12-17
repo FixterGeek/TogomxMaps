@@ -1,9 +1,7 @@
 import {LISTA_FETCH_SUCCESS} from '../actions/types';
 import {TIENDAS_CERCA} from "../actions/PedidosActions";
 
-const INITIAL_STATE = [];
-
-export default(state = INITIAL_STATE, action) => {
+export default(state = [], action) => {
   switch (action.type) {
     case LISTA_FETCH_SUCCESS:
       return action.payload;

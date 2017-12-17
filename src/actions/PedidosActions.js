@@ -50,6 +50,7 @@ export const acceptOrder = (order)=> (dispatch, getState)=>{
     })
     .then(data =>{
       dispatch (setNearStores(data));
-      return;
+      return data;
     })
+      .catch(err=>console.log(err));
 };

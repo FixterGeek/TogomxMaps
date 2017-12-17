@@ -59,11 +59,10 @@ export const saveSelfPosition = (position) => (dispatch) => {
   })
     .then(response=>{
       if (!response.ok){
-        console.log('Puto TU', response)
+          throw new Error(response.statusText)
       }
-      console.log('Puto Yo', response)
       return;
-    })
+    });
 
   dispatch(savePosition(location))
-}
+};

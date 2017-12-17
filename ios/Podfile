@@ -8,6 +8,7 @@ target 'AppBasto' do
   pod "React", :path => react_native_path
 
   pod 'GoogleMaps'
+  pod 'GooglePlaces'
   pod 'react-native-maps', path: '../'
   pod 'react-native-google-maps', path: '../'
 end
