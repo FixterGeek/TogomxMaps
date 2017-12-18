@@ -31,6 +31,8 @@ const image = "https://pbs.twimg.com/profile_images/719575066736889856/eL9HcziB_
 class Map extends Component{
 
     state = {
+        mapRegionInput:null,
+        isFirstLoad:true,
         deliverPosition:{
             latitude: 0,
             longitude: 0
@@ -47,7 +49,7 @@ class Map extends Component{
                     latitude: 20.104989,
                     longitude: -98.756323
                 },
-                title: "BlisS",
+                title: "Fixter",
                 description:"This map does work",
                 image
             },
@@ -88,7 +90,7 @@ class Map extends Component{
                     latitudeDelta: LATITUDE_DELTA,
                     longitudeDelta: LONGITUDE_DELTA,
                 };
-                this.setState({region});
+                //this.setState({region});
                 this.props.saveSelfPosition(region);
                 //console.log(region)
             }
@@ -108,22 +110,36 @@ class Map extends Component{
         this.props.notiFetch();
     }
 
+    onRegionChange = (region) => {
+        this.setState({
+            region: undefined,
+        });
+    };
+
+
+
+
 
     render(){
+        console.log(this.state.region);
         return(
             <View style={styles.container}>
-                {header}
+                {/*header*/}
                 <MapView
                     loadingEnabled
                     showsUserLocation={true}
-                    followUserLocation={true}
                     ref={ref=>this.map = ref}
-                    initialRegion={this.state.region}
                     loadingIndicatorColor={"orange"}
                     style={styles.container}
                     customMapStyle={MapStyles}
                     provider={ PROVIDER_GOOGLE }
                     showsMyLocationButton
+                    region={this.state.region || undefined}
+                    //initialRegion={this.state.region}
+                    onRegionChange={this.onRegionChange}
+                    //onMapReady={()=>this.setState({regionSet:true})}
+                    //onRegionChangeComplete={this.onRegionChange}
+
 
                 >
                     {
@@ -136,6 +152,8 @@ class Map extends Component{
                             );
                         })
                     }
+
+
                 </MapView>
                 <Footer/>
             </View>
@@ -177,6 +195,73 @@ const styles = StyleSheet.create({
         bottom: 0,
     }
 });
+
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//     },
+//     scrollView: {
+//         position: "absolute",
+//         bottom: 30,
+//         left: 0,
+//         right: 0,
+//         paddingVertical: 10,
+//     },
+//     endPadding: {
+//         paddingRight: width - CARD_WIDTH,
+//     },
+//     card: {
+//         padding: 10,
+//         elevation: 2,
+//         backgroundColor: "#FFF",
+//         marginHorizontal: 10,
+//         shadowColor: "#000",
+//         shadowRadius: 5,
+//         shadowOpacity: 0.3,
+//         shadowOffset: { x: 2, y: -2 },
+//         height: CARD_HEIGHT,
+//         width: CARD_WIDTH,
+//         overflow: "hidden",
+//     },
+//     cardImage: {
+//         flex: 3,
+//         width: "100%",
+//         height: "100%",
+//         alignSelf: "center",
+//     },
+//     textContent: {
+//         flex: 1,
+//     },
+//     cardtitle: {
+//         fontSize: 12,
+//         marginTop: 5,
+//         fontWeight: "bold",
+//     },
+//     cardDescription: {
+//         fontSize: 12,
+//         color: "#444",
+//     },
+//     markerWrap: {
+//         alignItems: "center",
+//         justifyContent: "center",
+//     },
+//     marker: {
+//         width: 8,
+//         height: 8,
+//         borderRadius: 4,
+//         backgroundColor: "rgba(130,4,150, 0.9)",
+//     },
+//     ring: {
+//         width: 24,
+//         height: 24,
+//         borderRadius: 12,
+//         backgroundColor: "rgba(130,4,150, 0.3)",
+//         position: "absolute",
+//         borderWidth: 1,
+//         borderColor: "rgba(130,4,150, 0.5)",
+//     },
+// });
+
 
 function mapStateToProps(state, ownProps){
     console.log("notificaciones: ", state.noti)

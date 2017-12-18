@@ -15,10 +15,10 @@ export default class Map extends Component < {} > {
       <StyleProvider style={getTheme(material)}>
       <Footer style={styles.back}>
       <FooterTab>
-        <Button vertical onPress={() => Actions.Map()}>
-          <Icon name="map"/>
-          <Text>Mapa</Text>
-        </Button>
+        {/*<Button vertical onPress={() => Actions.Map()}>*/}
+          {/*<Icon name="map"/>*/}
+          {/*<Text>Mapa</Text>*/}
+        {/*</Button>*/}
         <Button vertical onPress={() => Actions.Tiendas()}>
           <Icon name="cart"/>
           <Text>Tiendas</Text>

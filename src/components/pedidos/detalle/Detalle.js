@@ -35,7 +35,7 @@ export default class Detalle extends Component <{}> {
 
     acceptOrder = () =>{
       store.dispatch(acceptOrder(this.props.o))
-          .then(()=> Actions.Map())
+          .then(()=> Actions.Inicio())
           .catch(e=> {
             console.log(e);
             alert("No hay ninguna tienda cerca U_U")
